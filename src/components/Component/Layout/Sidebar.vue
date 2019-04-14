@@ -1,22 +1,22 @@
 <template>
     <div>
         <b-row v-bind:style="{height: thisHeight + 'px'}">
-            <b-col cols="2">
-                <SidebarTest v-bind:items="list"/>
-            </b-col>
-            <b-col cols="10">
+            <div class="d-inline-block" style="width:15%;">
+                <SidebarItem v-bind:items="list"/>
+            </div>
+            <div class="d-inline-block" style="width:85%;overflow:scroll;">
                 <router-view></router-view>
-            </b-col>
+            </div>
         </b-row>
     </div>
 </template>
 
 <script>
-    import SidebarTest from './SidebarTest.vue'
+    import SidebarItem from './SidebarItem.vue'
     export default {
         name: "Sidebar",
         components: {
-            SidebarTest
+            SidebarItem
         },
         data() {
             return {
