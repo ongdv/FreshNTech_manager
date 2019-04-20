@@ -1,115 +1,40 @@
 <template>
-    <div>
-        <b-row v-bind:style="{height: thisHeight + 'px'}">
-            <div class="d-inline-block" style="width:15%;">
-                <SidebarItem v-bind:items="list"/>
-            </div>
-            <div class="d-inline-block" style="width:85%;overflow:scroll;">
-                <router-view></router-view>
-            </div>
-        </b-row>
+    <div class="w-100" v-bind:style="{height: thisHeight + 'px'}">
+        <div style="width:15%;height:100%;float:left;">
+            <SidebarItem v-bind:items="list"/>
+        </div>
+        <div style="width:85%;overflow:scroll;height:100%;">
+            <component :is="layoutView" />
+        </div>
     </div>
 </template>
 
 <script>
     import SidebarItem from './SidebarItem.vue'
+    import Order from '../../Container/Order.vue';
+    import Main from '../../Container/Main.vue';
+    import Goods from '../../Container/Goods.vue';
+    import Category from '../../Container/Category.vue';
+    import GoodsDetail from '../Goods/GoodsDetail.vue';
+    
+    import Test from '../../Container/Test.vue';
     export default {
         name: "Sidebar",
         components: {
-            SidebarItem
+            SidebarItem,
+            Order, Goods, Main, Category, GoodsDetail //Component
+        },
+        computed: {
+            list() {
+                return this.$store.state.list;
+            },
+            layoutView () {
+                return this.$store.state.layoutView;
+            }
         },
         data() {
             return {
                 thisHeight: window.innerHeight,
-                list: [
-                    {
-                        name: "주문 관리",
-                        menus: [
-                            {
-                                name: "주문 목록",
-                                path: "order"
-                            }
-                        ]
-                    },
-                    {
-                        name: "상품 관리",
-                        menus: [
-                            {
-                                name: "상품 목록",
-                                path: "goods"
-                            },
-                            {
-                                name: "카테고리 관리",
-                                path: "goods/category"
-                            }
-                        ]
-                    },
-                    {
-                        name: "거래처 관리",
-                        menus: [
-                            {
-                                name: "주문 목록",
-                                path: "order"
-                            },
-                            {
-                                name: "주문 예제",
-                                path: "order/test"
-                            }
-                        ]
-                    },
-                    {
-                        name: "배송자 관리",
-                        menus: [
-                            {
-                                name: "주문 목록",
-                                path: "order"
-                            },
-                            {
-                                name: "주문 예제",
-                                path: "order/test"
-                            }
-                        ]
-                    },
-                    {
-                        name: "매입처 관리",
-                        menus: [
-                            {
-                                name: "주문 목록",
-                                path: "order"
-                            },
-                            {
-                                name: "주문 예제",
-                                path: "order/test"
-                            }
-                        ]
-                    },
-                    {
-                        name: "통계",
-                        menus: [
-                            {
-                                name: "주문 목록",
-                                path: "order"
-                            },
-                            {
-                                name: "주문 예제",
-                                path: "order/test"
-                            }
-                        ]
-                    },
-                    {
-                        name: "공지사항 관리",
-                        menus: [
-                            {
-                                name: "주문 목록",
-                                path: "order"
-                            },
-                            {
-                                name: "주문 예제",
-                                path: "order/test"
-                            }
-                        ]
-                    }
-                ]
             }
         },
     }

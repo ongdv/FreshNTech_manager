@@ -1,24 +1,38 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <component :is="currentView" />
   </div>  
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
-
+import Auth from "./components/Container/Auth";
+import Layout from './components/Container/Layout';
+import Constant from './Constant';
 export default {
   name: 'App',
+  components: {
+    Auth, Layout
+  },
+  computed:{
+    currentView () {
+      return this.$store.state.currentView;
+    }
+  },
+  mounted() {
+    this.$store.dispatch(Constant.FETCH_READY);
+    this.$store.dispatch(Constant.FETCH_CATEGORY);
+    this.$store.dispatch(Constant.FETCH_PURCHASE);
+    // console.log(this.$store.state.clientName);
+  },
 }
 </script>
-
 
 <style>
   html, body, .app, #app{
     width:100%;
     height:100%;
     min-height: 100%;
-    overflow: hidden;
+    
   }
   body::-webkit-scrollbar { 
     display: none; 

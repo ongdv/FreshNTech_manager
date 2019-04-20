@@ -1,11 +1,19 @@
 <template>
     <div >
-        <router-view></router-view>
+        <component :is="componentId" />
     </div>
 </template>
 
 <script>
+    import {
+        
+    } from './'
     export default {
-        name: "SubLayout"
+        name: "SubLayout",
+        data(){
+            return {
+                componentId: "order"
+            }
+        }
     }
 </script>

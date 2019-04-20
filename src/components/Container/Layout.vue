@@ -7,16 +7,11 @@
 
 <script>
     import { Nav, Sidebar } from '../Component/'
+    
     export default {
         name: "Layout",
         components: {
-            Sidebar,
-            Nav
-        },
-        data() {
-            return {
-                page: "main"
-            }
+            Sidebar,Nav, // Grid
         },
     }
 </script>
