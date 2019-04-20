@@ -168,8 +168,17 @@
         },
         methods: {
             reqOrder(){
-                var file = this.$refs.photofile.files[0];
-                this.item.multipartFile = file;
+                var formData = new FormData();
+                for (const key in this.item) {
+                    const element = payload[key];
+                    // console.log(key+", "+element);
+                    formData.append(key.toString(), element);
+                }
+                if(this.item !== "undefined"){
+                    var file = this.$refs.photofile.files[0];
+                    this.item.multipartFile = file;
+                }
+                console.log(this.item);
                 this.$store.dispatch(Constant.INSERT_GOODS, this.item);
                 this.$refs['modal-1'].hide();
             }

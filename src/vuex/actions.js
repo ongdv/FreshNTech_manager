@@ -79,13 +79,6 @@ export default {
     // insertGoods
     [Constant.INSERT_GOODS]: (store, payload) => {
         console.log(payload);
-        var formData = new FormData();
-        for (const key in payload) {
-                const element = payload[key];
-                console.log(key+", "+element);
-                formData.append(key.toString(), element);
-        }
-        console.log(formData);
         axios.post(APIConstant.INSERT_DATA_GOODS, formData)
         .then((res)=>{
             console.log(res.data);
@@ -108,7 +101,14 @@ export default {
     // updateGoods
     [Constant.UPDATE_GOODS]: (store, payload) => {
         console.log(payload);
-        // store.commit(Constant.FETCH_GOODS_SEARCH, {id: payload.id});
+        axios.post(APIConstant.UPDATE_DATA_GOODS, payload)
+        .then(res=>{
+            store.commit(Constant.FETCH_GOODS_SEARCH, {id: payload.id});
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+        
     },
     // deleteGoods
     [Constant.DELETE_GOODS]: (store, payload) => {

@@ -111,7 +111,7 @@
                     </tr>
                 </table>
                 <div class="text-center">
-                    <b-button class="btn btn-success w-25" @click="reqOrder">등록</b-button>
+                    <b-button class="btn btn-success w-25" @click="reqUpdate">등록</b-button>
                     <b-button class="btn btn-warning w-25" @click="cancel">목록으로</b-button>
                 </div>
             </div>
@@ -164,11 +164,19 @@
             }
         },
         methods: {
-            reqOrder(){
-                var file = this.$refs.photofile.files[0];
-                this.item.multipartFile = file;
+            reqUpdate(){
+                var formData = new FormData();
+                for (const key in this.item) {
+                    const element = this.item[key];
+                    // console.log(key+", "+element);
+                    formData.append(key.toString(), element);
+                }
+                if(this.item !== "undefined"){
+                    var file = this.$refs.photofile.files[0];
+                    formData.append("multipartFile", file);
+                }
                 console.log(this.item);
-                this.$store.dispatch(Constant.INSERT_GOODS, this.item);
+                this.$store.dispatch(Constant.UPDATE_GOODS, this.item);
             },
             cancel() {
                 this.$store.commit(Constant.CHANGE_PAGE, {component: "goods"})
