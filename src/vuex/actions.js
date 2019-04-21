@@ -3,6 +3,7 @@ import APIConstant from '../APIConstant';
 import axios from 'axios';
 
 export default {
+    //common start
     // getSession
     // id, pw
     [Constant.LOGIN]: (store, payload) => {
@@ -43,6 +44,9 @@ export default {
             console.log(err);
         })
     },
+    //common end
+
+    //category start
     //getCategory
     [Constant.FETCH_CATEGORY]: (store) => {
         axios.get(APIConstant.FETCH_DATA_CATEGORY)
@@ -53,8 +57,18 @@ export default {
             console.log(err);
         })
     },
+    //updateCategory
+    [Constant.UPDATE_CATEGORY]: (store, payload) => {
+        console.log("Not implement");
+    },
+    //deleteCategory
+    [Constant.DELETE_CATEGORY]: (store, payload) => {
+        console.log("Not implement");
+    },
+    //category end
 
-    // getGoods
+    //goods start
+    //getGoods
     [Constant.FETCH_GOODS]: (store) => {
         axios.get(APIConstant.FETCH_DATA_GOODS)
         .then(res=>{
@@ -88,6 +102,7 @@ export default {
             console.log(err);
         })
     },
+    // getGoodsDetail
     [Constant.FETCH_GOODS_DETAIL]: (store, payload) => {
         axios.get(APIConstant.FETCH_DATA_GOODS_DETAIL.replace("${id}", payload))
         .then(res=>{
@@ -124,6 +139,9 @@ export default {
         })
         // store.commit(Constant.FETCH_GOODS_SEARCH, {id: payload.id});
     },
+    //goods end
+
+    //order start
     // getOrder
     [Constant.FETCH_ORDER]: (store, payload) => {
         axios.get(APIConstant.FETCH_DATA_ORDER)
@@ -143,5 +161,13 @@ export default {
         .then(res=> {
             
         })
-    }
+    },
+    // updateOrder
+    [Constant.UPDATE_ORDER]: (store, payload) => {
+        
+    },
+    // deleteOrder
+    [Constant.DELETE_ORDER]: (store, payload) => {
+
+    },
 }

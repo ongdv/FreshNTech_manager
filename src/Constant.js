@@ -17,6 +17,7 @@ export default {
     //Order
     FETCH_ORDER: "fetchData", // 주문 전체 목록
     FETCH_ORDER_SEARCH: "fetchDataSearch", //주문 검색 목록
+    FETCH_ORDER_DETAIL: "fetchDataDetail",
     INSERT_ORDER: "insertOrder", //주문 등록
     UPDATE_ORDER: "updateOrder", // 주문 수정
     DELETE_ORDER: "deleteOrder", // 주문 삭제

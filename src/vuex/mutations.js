@@ -2,6 +2,7 @@ import Constant from '../Constant';
 import { Store } from 'vuex';
 
 export default {
+    //Common start
     //setUser
     //로그인 후 페이지 전환
     [Constant.LOGIN]: (state, payload) => {
@@ -26,11 +27,11 @@ export default {
         });
     },
 
-    //getCategory
-    //카테고리 불러오기
-    [Constant.FETCH_CATEGORY]: (state, payload) => {
-        state.fCategory = payload.first;
-        state.sCategory = payload.second;
+    //setView(total)
+    //App.vue에서 사용, 로그인과 레이아웃을 분리하기 위한 변이
+    [Constant.CHANGE_PAGE]: (state, payload) => {
+        console.log(payload);
+        state.layoutView = payload.component;
     },
 
     //getPurchase
@@ -39,14 +40,18 @@ export default {
         console.log(payload);
         state.purchase = payload;
     },
-
-    //setView(total)
-    //App.vue에서 사용, 로그인과 레이아웃을 분리하기 위한 변이
-    [Constant.CHANGE_PAGE]: (state, payload) => {
-        console.log(payload);
-        state.layoutView = payload.component;
+    //Common end
+    
+    //Category start
+    //getCategory
+    //카테고리 불러오기
+    [Constant.FETCH_CATEGORY]: (state, payload) => {
+        state.fCategory = payload.first;
+        state.sCategory = payload.second;
     },
+    //Category end
 
+    //Goods start
     //getGoodsList
     //물품 상태 변이
     [Constant.FETCH_GOODS]: (state, payload) => {
@@ -76,11 +81,15 @@ export default {
         state.goods = {};
         state.layoutView = "Goods"
     },
+    //Goods end
 
+    //Order start
     //getOrderList
     //주문 상태 변이
     [Constant.FETCH_ORDER]: (state, payload) => {
         console.log(payload);
         state.orderList = payload.orders;
-    }
+    },
+    
+    //Order end
 }

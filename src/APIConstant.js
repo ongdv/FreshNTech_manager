@@ -4,13 +4,18 @@ export default {
     //Common
     LOGIN: BASE_URL+"pm/login", //auth => post
     FETCH_DATA_CATEGORY: BASE_URL+"category", //getCategory => get
-    FETCH_DATA_PURCHASE: BASE_URL+"purchase",
 
     //Order
     FETCH_DATA_ORDER: BASE_URL+"order", //getOrder =>get
     FETCH_DATA_ORDER_DETAIL: BASE_URL+"order/detail/${id}", //getOrderDetail => get
     FETCH_DATA_ORDER_SEARCH: BASE_URL+"order/search", //searchOrder => post
     FERCH_DATA_ORDER_READY: BASE_URL+"order/setinsert", //setInsert => get
+
+    //Category
+    FETCH_DATA_CATEGORY: BASE_URL+"category", //getCategory => get
+    INSERT_DATA_CATEGORY: BASE_URL+"cateory", //insertCategory => post
+    UPDATE_DATA_CATEGORY: BASE_URL+"category", //updateCategory => put
+    DELETE_DATA_CATEGORY: BASE_URL+"category", //deleteCategory => delete
 
     //Goods
     FETCH_DATA_GOODS: BASE_URL+"item/customersearch?keyword=", //getGoodsList => get
