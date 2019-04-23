@@ -95,6 +95,17 @@
                         </td>
                     </tr>
                     <tr>
+                        <th class="text-center align-middle" style="background: rgba(241,241,241);">
+                            메모
+                        </th>
+                        <td colspan="3">
+                            <b-form-textarea
+                                v-model="item.memo"
+                                placeholder="상품에 대한 메모"
+                                rows="3" />
+                        </td>
+                    </tr>
+                    <tr>
                         <th class="text-center align-middle" style="background: rgba(241,241,241);">카테고리</th>
                         <td colspan="3">
                             <b-row>
@@ -170,8 +181,8 @@
             reqOrder(){
                 var formData = new FormData();
                 for (const key in this.item) {
-                    const element = payload[key];
-                    // console.log(key+", "+element);
+                    const element = this.item[key];
+                    console.log(key+", "+element);
                     formData.append(key.toString(), element);
                 }
                 if(this.item !== "undefined"){
@@ -179,7 +190,7 @@
                     this.item.multipartFile = file;
                 }
                 console.log(this.item);
-                this.$store.dispatch(Constant.INSERT_GOODS, this.item);
+                this.$store.dispatch(Constant.INSERT_GOODS, formData);
                 this.$refs['modal-1'].hide();
             }
         },

@@ -6,7 +6,6 @@ export default {
     //setUser
     //로그인 후 페이지 전환
     [Constant.LOGIN]: (state, payload) => {
-        console.log(payload);
         state.user = payload;
         state.currentView = "Layout";
     },
@@ -22,8 +21,9 @@ export default {
     [Constant.FETCH_READY]: (state, payload) => {
         state.employee = payload[0];
         state.client = payload[1];
+        console.log(state.client);
         payload[1].forEach(element => {
-            state.clientName.push(element.bName);
+            state.clientName.push({value: element.id, text: element.bName});
         });
     },
 

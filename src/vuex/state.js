@@ -112,9 +112,57 @@ export default {
         bName:'',
         memo:'',
         tbCustomer_ID:'',
+        multipartFile: "",
     },
     fCategory: [], //1차 카테고리
     sCategory: [], //2차 카테고리
     purchase: [],
     goods:{},
+    goodsFields: [
+        {
+            key: 'id',
+            label: "상품코드",
+            sortable:true
+        },
+        {
+            key: 'itemName',
+            label: '상품명',
+            sortable:true
+        },
+        {
+            key: 'unit',
+            label: '규격(단위)',
+            sortable:true
+        },
+        {
+            key: 'origin',
+            label: '제조사(원산지)',
+            sortable:true
+        },
+        {
+            key: 'price1',
+            label: '배송단가',
+            sortable:true
+        },
+        {
+            key: 'price2',
+            label: '소비자가격',
+            sortable:true
+        },
+        {
+            key: 'purchasePrice',
+            label: '예비가격',
+            sortable:true
+        },
+        {
+            key: 'itemQty',
+            label: '재고량',
+            sortable:true
+        },
+        {
+            key: 'state',
+            label: '판매상태',
+            sortable:true
+        }
+    ],
 }

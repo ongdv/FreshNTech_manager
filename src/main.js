@@ -1,12 +1,12 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import './plugins/vuetify'
+// import './plugins/vuetify'
 import App from './App'
 import router from './router'
 import store from './vuex'
 import bootstrap from 'bootstrap-vue';
-import vuetify from 'vuetify';
+// import vuetify from 'vuetify';
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 // import axios from 'axios'

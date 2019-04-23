@@ -37,7 +37,7 @@ export default {
     [Constant.FETCH_PURCHASE]: (store) => {
         axios.get(APIConstant.FETCH_DATA_PURCHASE)
         .then(res=>{
-            // console.log(res.data);
+            console.log(res.data);
             store.commit(Constant.FETCH_PURCHASE, res.data);
         })
         .catch(err=>{
@@ -92,10 +92,9 @@ export default {
     },
     // insertGoods
     [Constant.INSERT_GOODS]: (store, payload) => {
-        console.log(payload);
-        axios.post(APIConstant.INSERT_DATA_GOODS, formData)
-        .then((res)=>{
-            console.log(res.data);
+        // console.log(payload);
+        axios.post(APIConstant.INSERT_DATA_GOODS, payload)
+        .then(()=>{
             store.commit(Constant.FETCH_GOODS_SEARCH, payload.itemName);
         })
         .catch(err=>{
@@ -159,7 +158,10 @@ export default {
         console.log(formData);
         axios.post(APIConstant.INSERT_DATA_GOODS, formData)
         .then(res=> {
-            
+            console.log(res.data);
+        })
+        .catch(err=>{
+            console.log(err);
         })
     },
     // updateOrder
