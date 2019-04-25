@@ -1,5 +1,4 @@
 import Constant from '../Constant';
-import { Store } from 'vuex';
 
 export default {
     //Common start
@@ -67,6 +66,7 @@ export default {
         state.Client = {};
     },
     //Client end
+
     //Category start
     //getCategory
     //카테고리 불러오기
