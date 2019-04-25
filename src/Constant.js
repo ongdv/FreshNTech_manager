@@ -10,6 +10,7 @@ export default {
     FETCH_GOODS: "fetchGoods", // 물품 전체 목록
     FETCH_GOODS_SEARCH: "fetchGoodsSearch", //물품 검색 목록
     FETCH_GOODS_DETAIL: "fetchGoodsDetail", //물품 상세 정보
+    FILTER_GOODS: "filterGoods", // 물품 정보 필터링
     INSERT_GOODS: "insertGoods", // 물품 등록
     UPDATE_GOODS: "updateGoods", // 물품 수정
     DELETE_GOODS: "deleteGoods", // 물품 삭제
@@ -26,5 +27,13 @@ export default {
     FETCH_CATEGORY: "fetchCategory", //카테고리 목록
     INSERT_CATEGORY: "insertCategory", //카테고리 등록
     UPDATE_CATEGORY: "updateCategory", //카테고리 수정
-    DELETE_CATEGORY: "deleteCategory" //카테고리 삭제
+    DELETE_CATEGORY: "deleteCategory", //카테고리 삭제
+
+    //Client
+    FETCH_CLIENT: "fetchClient", //거래처 목록
+    FETCH_CLIENT_SEARCH: "fetchClientSearch", //거래처 검색 목록
+    FETCH_CLIENT_DETAIL: "fetchClientDetail", //거래처 상세 정보
+    INSERT_CLIENT: "insertClient", //거래처 등록
+    UPDATE_CLIENT: "updateClient", //거래처 수정
+    DELETE_CLIENT: "deleteClient", //거래처 삭제
 }

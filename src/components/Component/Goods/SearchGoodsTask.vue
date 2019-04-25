@@ -11,17 +11,15 @@
                                 <tr>
                                     <th class="text-center align-middle" style="background: rgba(241,241,241);">상품 상태</th>
                                     <td>
-                                        <b-form-select v-model="select.state.selected" :options="select.state.options"></b-form-select>
+                                        <b-form-select v-model="select.state.selected" :options="select.state.options" @change="filter('state', select.state.selected)"></b-form-select>
                                     </td>
-                                    
                                     <th class="text-center align-middle" style="background: rgba(241,241,241);">1차 카테고리</th>
                                     <td>
-                                        <b-form-select v-model="select.fCategory.selected" :options="select.fCategory.options"></b-form-select>
+                                        <b-form-select v-model="select.fCategory.selected" :options="select.fCategory.options" @change="filter('first', select.fCategory.selected)"></b-form-select>
                                     </td>
-
                                     <th class="text-center align-middle" style="background: rgba(241,241,241);">2차 카테고리</th>
                                     <td>
-                                        <b-form-select v-model="select.sCategory.selected" :options="select.sCategory.options"></b-form-select>
+                                        <b-form-select v-model="select.sCategory.selected" :options="select.sCategory.options" @change="filter('second', select.sCategory.selected)"></b-form-select>
                                     </td>
                                 </tr>
                             </table>
@@ -51,6 +49,7 @@
 </template>
 
 <script>
+    import Constant from '../../../Constant.js';
     export default {
         name: "SearchGoodsTask",
         props: ['select', 'rows'],
@@ -59,6 +58,10 @@
                 e.preventDefault();
                 console.log(this.select);
                 this.$emit('searchGoods', this.select.search);
+            },
+            filter(filter, value) {
+                console.log(filter, value);
+                this.$store.commit(Constant.FILTER_GOODS, {filter: filter, value: value});
             }
         }
     }

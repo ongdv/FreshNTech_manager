@@ -5,8 +5,8 @@
                 <img src="@/assets/logo2.png" width="100" class="m-auto" alt="logo">
             </div>
             <div class="d-inline-block text-right" style="width:80%;">
-                <button class="bg-transparent border-0"><strong>{{user.username}}</strong> 님</button>
-                <button class="bg-transparent border-0" @click="logout">로그아웃</button>
+                <button class="bg-transparent border-0 text-white"><strong>{{user.username}}</strong> 님</button>
+                <button class="bg-transparent border-0 text-white" @click="logout">로그아웃</button>
             </div>
         </div>
     </div>

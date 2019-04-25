@@ -22,7 +22,7 @@
 
 <script>
     import Constant from '../../Constant.js';
-    import GoodsModal from '../Component/Common/GoodsModal.vue';
+    import GoodsModal from '../Component/Goods/GoodsModal.vue';
     import SearchGoodsTask from '../Component/Goods/SearchGoodsTask.vue';
     import GoodsTable from '../Component/Goods/GoodsTable.vue';
     export default {

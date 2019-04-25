@@ -16,13 +16,18 @@
     import Goods from '../../Container/Goods.vue';
     import Category from '../../Container/Category.vue';
     import GoodsDetail from '../Goods/GoodsDetail.vue';
+    import Client from '../../Container/Client.vue';
+    import ClientDetail from '../Client/ClientDetail.vue';
+    import Deliverer from '../../Container/Deliverer.vue';
+    import Purchase from '../../Container/Purchase.vue';
+    import Employee from '../../Container/Employee.vue';
     
     import Test from '../../Container/Test.vue';
     export default {
         name: "Sidebar",
         components: {
             SidebarItem,
-            Order, Goods, Main, Category, GoodsDetail //Component
+            Order, Goods, Main, Category, GoodsDetail, Client, ClientDetail, Purchase, Employee, Deliverer //Component
         },
         computed: {
             list() {

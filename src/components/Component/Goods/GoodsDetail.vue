@@ -1,7 +1,7 @@
 <template>
     <div style="overflow-y:scroll">
         <div style="width:90%;margin:1% auto;">
-            <div><span class="h2">상품 수정</span> <button class="d-inline btn btn-outline-danger" @click="deleteGoods">삭제</button></div>
+            <div><span class="h2">상품 수정</span> <button class="d-inline btn btn-outline-danger float-right" @click="deleteGoods">삭제</button></div>
                 <hr />            
                 <table class="table">
                     <tr>
@@ -89,6 +89,17 @@
                         </td>
                     </tr>
                     <tr>
+                        <th class="text-center align-middle" style="background: rgba(241,241,241);">
+                            메모
+                        </th>
+                        <td colspan="3">
+                            <b-form-textarea
+                                v-model="item.memo"
+                                placeholder="상품에 대한 메모"
+                                rows="3" />
+                        </td>
+                    </tr>
+                    <tr>
                         <th class="text-center align-middle" style="background: rgba(241,241,241);">카테고리</th>
                         <td colspan="3">
                             <b-row>
@@ -111,7 +122,7 @@
                     </tr>
                 </table>
                 <div class="text-center">
-                    <b-button class="btn btn-success w-25" @click="reqUpdate">등록</b-button>
+                    <b-button class="btn btn-success w-25" @click="reqUpdate">수정</b-button>
                     <b-button class="btn btn-warning w-25" @click="cancel">목록으로</b-button>
                 </div>
             </div>
@@ -184,6 +195,9 @@
             deleteGoods() {
                 this.$store.dispatch(Constant.DELETE_GOODS, this.item);
             }
+        },
+        mounted() {
+            console.log(this.item.id);
         },
     }
 </script>

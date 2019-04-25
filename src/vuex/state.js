@@ -29,12 +29,8 @@ export default {
             name: "거래처 관리",
             menus: [
                 {
-                    name: "테스트",
-                    component: "test"
-                },
-                {
-                    name: "테스트2",
-                    component: "test"
+                    name: "거래처 목록",
+                    component: "Client"
                 }
             ]
         },
@@ -42,12 +38,8 @@ export default {
             name: "배송자 관리",
             menus: [
                 {
-                    name: "테스트",
-                    component: "test"
-                },
-                {
-                    name: "테스트2",
-                    component: "test"
+                    name: "배송자 목록",
+                    component: "Deliverer"
                 }
             ]
         },
@@ -55,12 +47,17 @@ export default {
             name: "매입처 관리",
             menus: [
                 {
-                    name: "테스트",
-                    component: "test"
-                },
+                    name: "매입처 목록",
+                    component: "Purchase"
+                }
+            ]
+        },
+        {
+            name: "직원 관리",
+            menus: [
                 {
-                    name: "테스트2",
-                    component: "test"
+                    name: "직원 목록",
+                    component: "Employee"
                 }
             ]
         },
@@ -68,11 +65,15 @@ export default {
             name: "통계",
             menus: [
                 {
-                    name: "테스트",
+                    name: "주문 통계",
                     component: "test"
                 },
                 {
-                    name: "테스트2",
+                    name: "상품 통계",
+                    component: "test"
+                },
+                {
+                    name: "거래처 통계",
                     component: "test"
                 }
             ]
@@ -81,12 +82,12 @@ export default {
             name: "공지사항 관리",
             menus: [
                 {
-                    name: "테스트",
-                    component: "test"
+                    name: "거래처 공지사항",
+                    component: "Notice"
                 },
                 {
-                    name: "테스트2",
-                    component: "test"
+                    name: "배송자 공지사항",
+                    component: "Notice"
                 }
             ]
         }
@@ -94,8 +95,11 @@ export default {
     orderList: [], //주문 목록
     goodsList: [], //상품 목록
     employee: [], //직원 목록
-    client: [], //거래처 목록 
+    clientList: [], //거래처 목록 
     clientName: [], //거래처 이름 목록
+    client: {},
+    salesmanList: [],
+    delivererList: [],
     item: { //상품 정보 바인딩용 상태
         itemName:'',
         itemQTY:0,
@@ -116,9 +120,32 @@ export default {
     },
     fCategory: [], //1차 카테고리
     sCategory: [], //2차 카테고리
-    purchase: [],
-    goods:{},
-    goodsFields: [
+    purchase: [], //거래처 목록
+    goods:{}, //상품 상세보기 
+    clientFields: [ //거래처 테이블 필드
+        {
+            key: 'id',
+            label: "거래처코드",
+            sortable: true
+        },
+        {
+            key: 'bName',
+            label: "거래처명",
+            sortable: true
+        },
+        {
+            key: 'regDate',
+            label: "등록일",
+            sortable: true
+        },
+        {
+            key: 'payment',
+            label: "총매출액",
+            sortable: true
+        },
+        
+    ],
+    goodsFields: [ //상품 테이블 필드
         {
             key: 'id',
             label: "상품코드",
@@ -165,4 +192,25 @@ export default {
             sortable:true
         }
     ],
+    clientItem: {
+        bName:"",
+        bNumber:"",
+        chief:"",
+        manager:"",
+        mobile:"",
+        fax:"",
+        email:"",
+        priceRate:0,
+        bSector:"",
+        userID:"",
+        userPW:"",
+        tel:"",
+        postNo:"",
+        address1:"",
+        address2:"",
+        address3:"",
+        priceRate:"",
+        tbDeliverer_ID:"",
+        salesman_ID:""
+    }
 }

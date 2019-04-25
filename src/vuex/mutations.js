@@ -15,12 +15,13 @@ export default {
     [Constant.LOGOUT]: (state) => {
         state.user = null;
         state.currentView = "Auth";
+        state.layoutView = "Main";
     },
 
     //직원, 거래처 목록 입력
     [Constant.FETCH_READY]: (state, payload) => {
         state.employee = payload[0];
-        state.client = payload[1];
+        state.clientList = payload[1];
         console.log(state.client);
         payload[1].forEach(element => {
             state.clientName.push({value: element.id, text: element.bName});
@@ -33,15 +34,39 @@ export default {
         console.log(payload);
         state.layoutView = payload.component;
     },
-
-    //getPurchase
-    //매입처 목록 불러오기
-    [Constant.FETCH_PURCHASE]: (state, payload) => {
-        console.log(payload);
-        state.purchase = payload;
-    },
     //Common end
-    
+
+    //Client start
+    // getClient
+    [Constant.FETCH_CLIENT]: (state, payload) => {
+        console.log(payload);
+        payload[0].forEach(item=>{
+            state.delivererList.push({value: item.delivererId, text: item.delivererManager});
+        });
+        state.clientList = payload[1];
+        payload[2].forEach(item=>{
+            state.salesmanList.push({value: item.sId, text: item.sManager});
+        });
+    },
+    //searchClient
+    [Constant.FETCH_CLIENT_SEARCH]: (state, payload) => {
+        console.log(payload);
+        state.clientList = state.clientList.filter(item=>{
+            return item.bName.includes(payload) === true;
+        })
+    },
+    //getClientDetail
+    [Constant.FETCH_CLIENT_DETAIL]: (state, payload) => {
+        console.log(payload);
+        state.client = payload[0];
+        state.layoutView = "ClientDetail";
+    },
+    //deleteClient
+    [Constant.DELETE_CLIENT]: (state, payload) => {
+        state.layoutView = "Client";
+        state.Client = {};
+    },
+    //Client end
     //Category start
     //getCategory
     //카테고리 불러오기
@@ -81,7 +106,43 @@ export default {
         state.goods = {};
         state.layoutView = "Goods"
     },
+
+    //filterGoods
+    [Constant.FILTER_GOODS]: (state, payload) => {
+        console.log(payload);
+        switch (payload.filter) {
+            case 'state':
+                console.log("state filter");
+                state.goodsList = state.goodsList.filter(item => {
+                    return item.state === payload.value;
+                })
+                console.log(state.goodsList);
+                break;
+            case 'first':
+                console.log("first filter");
+                state.goodsList = state.goodsList.filter(item => {
+                    return item.first === payload.value;
+                })
+                break;
+            case 'second':
+                console.log("second filter");
+                state.goodsList = state.goodsList.filter(item => {
+                    return item.second === payload.value;
+                })
+                break;
+        }
+
+    },
     //Goods end
+
+    //Purchase start
+    //getPurchase
+    //매입처 목록 불러오기
+    [Constant.FETCH_PURCHASE]: (state, payload) => {
+        console.log(payload);
+        state.purchase = payload;
+    },
+    //Purchase end
 
     //Order start
     //getOrderList

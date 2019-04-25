@@ -142,7 +142,8 @@
         props: ["info"],
         computed: {
             item(){
-                return this.$store.state.item;
+                var data = Object.assign({}, this.$store.state.item);
+                return data;
             },
             purchase() {
                 var data = [];
@@ -188,9 +189,12 @@
                 if(this.item !== "undefined"){
                     var file = this.$refs.photofile.files[0];
                     this.item.multipartFile = file;
+                    formData.append("multipartFile", file);
                 }
-                console.log(this.item);
-                this.$store.dispatch(Constant.INSERT_GOODS, formData);
+                // console.log(this.item);
+                // console.log(this.$store.state.item);
+                this.$store.dispatch(Constant.INSERT_GOODS, {formData: formData, item: this.item});
+                Object.assign(this.item, this.$store.state.item);
                 this.$refs['modal-1'].hide();
             }
         },
