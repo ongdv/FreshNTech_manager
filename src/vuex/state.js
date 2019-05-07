@@ -100,6 +100,7 @@ export default {
     client: {},
     salesmanList: [],
     delivererList: [],
+    deliverer: {},
     item: { //상품 정보 바인딩용 상태
         itemName:'',
         itemQTY:0,
@@ -111,16 +112,35 @@ export default {
         price2:0,
         price3:0,
         purchasePrice:0,
-        first:1,
-        second:2,
+        firstcategory_id:1,
+        secondcategory_id:2,
+        thirdcategory_id: 3,
         bName:'',
         memo:'',
         tbCustomer_ID:'',
-        multipartFile: "",
+        itemImage: "",
     },
     fCategory: [], //1차 카테고리
     sCategory: [], //2차 카테고리
-    purchase: [], //거래처 목록
+    purchaseField:[
+        {
+            key: 'id',
+            label: "매입처 코드",
+            sortable:true
+        },
+        {
+            key: 'bName',
+            label: "매입처명",
+            sortable:true
+        },
+        {
+            key: 'count',
+            label: "상품수",
+            sortable:true
+        },
+    ], //매입처 테이블 필드
+    purchaseList: [], //매입처 목록
+    purchase:{}, //매입처 상세보기 필드
     goods:{}, //상품 상세보기 
     clientFields: [ //거래처 테이블 필드
         {
@@ -191,6 +211,34 @@ export default {
             label: '판매상태',
             sortable:true
         }
+    ],
+    delivererFileds: [
+        {
+            key: 'id',
+            label: 'ID',
+            sortable:true
+        },
+        {
+            key: 'userId',
+            label: '사용자ID',
+            sortable:true
+        },
+        {
+            key: 'manager',
+            label: '이름',
+            sortable:true
+        },
+        {
+            key: 'bName',
+            label: '담당 거래처',
+            sortable:true
+        },
+        {
+            key: 'regDate',
+            label: '등록일',
+            sortable:true
+        },
+        
     ],
     clientItem: {
         bName:"",

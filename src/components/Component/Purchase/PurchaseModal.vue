@@ -147,7 +147,7 @@
             },
             purchase() {
                 var data = [];
-                for (const object of this.$store.state.purchaseList) {
+                for (const object of this.$store.state.purchase) {
                     data.push({text: object.bName+"("+object.id+")", value: object.bName});
                 }
                 return data;

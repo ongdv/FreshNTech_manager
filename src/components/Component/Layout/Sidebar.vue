@@ -20,6 +20,7 @@
     import ClientDetail from '../Client/ClientDetail.vue';
     import Deliverer from '../../Container/Deliverer.vue';
     import Purchase from '../../Container/Purchase.vue';
+    import PurchaseDetail from '../Purchase/PurchaseDetail.vue'
     import Employee from '../../Container/Employee.vue';
     
     import Test from '../../Container/Test.vue';
@@ -27,7 +28,14 @@
         name: "Sidebar",
         components: {
             SidebarItem,
-            Order, Goods, Main, Category, GoodsDetail, Client, ClientDetail, Purchase, Employee, Deliverer //Component
+            Order,
+            Main,
+            Category,
+            Goods, GoodsDetail,
+            Client, ClientDetail,
+            Purchase, PurchaseDetail,
+            Employee,
+            Deliverer //Component
         },
         computed: {
             list() {

@@ -4,7 +4,21 @@ export default {
     LOGOUT: "logout",
     CHANGE_PAGE: "changePage", // 페이지 전환
     FETCH_READY: "fetchReady", // 직원, 거래처 목록 불러오기
+    
+    //Providers
+    FETCH_PROVIDER: "fetchProvider", //매입처 목록 불러오기
+    FETCH_PROVIDER_DETAIL: "fetchProviderDetail", //매입처 상세보기
+    INSERT_PROVIDER: "insertProvider", //매입처 등록
+    UPDATE_PROVIDER: "updateProvider", //매입처 수정
+    DELETE_PROVIDER: "deleteProvider", //매입처 삭제
+
+    //Purchase
     FETCH_PURCHASE: "fetchPurchase", //매입처 목록 불러오기
+    FETCH_PURCHASE_SEARCH: "fetchPurchaseSearch", //매입처 검색
+    FETCH_PURCHASE_DETAIL: "fetchPurchaseDetail", //매입처 상세보기
+    INSERT_PURCHASE: "insertPurchase", //매입처 등록
+    UPDATE_PURCHASE: "updatePurchase", //매입처 수정
+    DELETE_PURCHASE: "deletePurchase", //매입처 삭제
 
     //Goods
     FETCH_GOODS: "fetchGoods", // 물품 전체 목록
@@ -36,4 +50,12 @@ export default {
     INSERT_CLIENT: "insertClient", //거래처 등록
     UPDATE_CLIENT: "updateClient", //거래처 수정
     DELETE_CLIENT: "deleteClient", //거래처 삭제
+
+    //Deliverer
+    FETCH_DELIVERER: "fetchDeliverer", //배송자 목록
+    FETCH_DELIVERER_SEARCH: "fetchDelivererSearch", //배송자 검색 목록
+    FETCH_DELIVERER_DETAIL: "fetchDelivererDetail", //매송자 상세 정보
+    INSERT_DELIVERER: "insertDeliverer", //배송자 등록
+    UPDATE_DELIVERER: "updateDeliverer", //배송자 수정
+    DELETE_DELIVERER: "deleteDeliverer", //배송자 삭제
 }

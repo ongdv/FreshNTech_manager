@@ -17,15 +17,15 @@ export default {
         state.layoutView = "Main";
     },
 
-    //직원, 거래처 목록 입력
-    [Constant.FETCH_READY]: (state, payload) => {
-        state.employee = payload[0];
-        state.clientList = payload[1];
-        console.log(state.client);
-        payload[1].forEach(element => {
-            state.clientName.push({value: element.id, text: element.bName});
-        });
-    },
+    // //직원, 거래처 목록 입력
+    // [Constant.FETCH_READY]: (state, payload) => {
+    //     state.employee = payload[0];
+    //     state.clientList = payload[1];
+    //     console.log(state.client);
+    //     payload[1].forEach(element => {
+    //         state.clientName.push({value: element.id, text: element.bName});
+    //     });
+    // },
 
     //setView(total)
     //App.vue에서 사용, 로그인과 레이아웃을 분리하기 위한 변이
@@ -35,6 +35,19 @@ export default {
     },
     //Common end
 
+    //Provider start
+    //getProvider
+    [Constant.FETCH_PROVIDER]: (state, payload) => {
+        console.log(payload);
+        state.providerList = payload;
+    },
+    //getProviderDetail
+    [Constant.FETCH_PROVIDER_DETAIL]: (state, payload) => {
+        console.log(payload);
+        state.provider = payload;
+    },
+    
+    //Provider end
     //Client start
     // getClient
     [Constant.FETCH_CLIENT]: (state, payload) => {
@@ -66,6 +79,19 @@ export default {
         state.Client = {};
     },
     //Client end
+
+    //Deliverer start
+    //getDeliverer
+    [Constant.FETCH_DELIVERER]: (state, payload) => {
+        state.delivererList = payload;
+    },
+
+    [Constant.FETCH_DELIVERER_SEARCH]: (state, payload) => {
+        state.delivererList = state.delivererList.filter(item=>{
+            return item.bName.includes(payload) === true;
+        });
+    },
+    //Deliverer end
 
     //Category start
     //getCategory
@@ -131,7 +157,6 @@ export default {
                 })
                 break;
         }
-
     },
     //Goods end
 
@@ -140,7 +165,20 @@ export default {
     //매입처 목록 불러오기
     [Constant.FETCH_PURCHASE]: (state, payload) => {
         console.log(payload);
+        state.purchaseList = payload;
+    },
+    //saechPurchase
+    //매입처 검색
+    [Constant.FETCH_PURCHASE_SEARCH]: (state, payload) => {
+        console.log(payload);
+        state.purchaseList = payload;
+    },
+    //getPurchaseDetail
+    //매입처 상세보기
+    [Constant.FETCH_PURCHASE_DETAIL]: (state, payload) => {
+        console.log(payload);
         state.purchase = payload;
+        state.layoutView = "PurchaseDetail"
     },
     //Purchase end
 

@@ -21,23 +21,24 @@ export default {
         //     console.log(err);
         // })
     },
-    // getEmployee, getClient
-    [Constant.FETCH_READY]: (store) => {
-        axios.get(APIConstant.FERCH_DATA_ORDER_READY)
-        .then(res=>{
-            console.log(res.data);
-            store.commit(Constant.FETCH_READY, res.data);
-        })
-        .catch(err=>{
-            console.log(err);
-        })
-    },
+    // // getEmployee, getClient
+    // [Constant.FETCH_READY]: (store) => {
+    //     axios.get(APIConstant.FERCH_DATA_ORDER_READY)
+    //     .then(res=>{
+    //         console.log(res.data);
+    //         store.commit(Constant.FETCH_READY, res.data);
+    //     })
+    //     .catch(err=>{
+    //         console.log(err);
+    //     })
+    // },
 
     //common end
 
     //Client start
     // getClient
     [Constant.FETCH_CLIENT]: (store) => {
+        console.log(Constant.FETCH_CLIENT);
         axios.get(APIConstant.FETCH_DATA_CLIENT)
         .then(res=>{
             console.log(res.data);
@@ -49,7 +50,7 @@ export default {
     },
     //getClientDetail
     [Constant.FETCH_CLIENT_DETAIL]: (store, payload) => {
-        console.log(payload);
+        console.log(Constant.FETCH_CLIENT_DETAIL);
         axios.get(APIConstant.FETCH_DATA_CLIENT_DETAIL.replace("${id}", payload))
         .then(res=>{
             console.log(res);
@@ -61,6 +62,7 @@ export default {
     },
     //deleteClient
     [Constant.DELETE_CLIENT]: (store, payload) => {
+        console.log(Constant.DELETE_CLIENT);
         axios.delete(APIConstant.DELETE_DATA_CLIENT.replace("${id}", payload))
         .then(res=>{
             store.commit(Constant.DELETE_CLIENT);
@@ -72,6 +74,7 @@ export default {
     },
     //insertClient
     [Constant.INSERT_CLIENT]: (store, payload) => {
+        console.log(Constant.INSERT_CLIENT);
         axios.post(APIConstant.INSERT_DATA_CLIENT, payload)
         .then(res=>{
             console.log(res.data);
@@ -84,6 +87,7 @@ export default {
     },
     //updateClient
     [Constant.UPDATE_CLIENT]: (store, payload) => {
+        console.log(Constant.UPDATE_CLIENT);
         axios.put(APIConstant.UPDATE_DATA_CLIENT, payload)
         .then(res=>{
             console.log(res.data);
@@ -95,9 +99,64 @@ export default {
         })
     },
     //Client end
+
+    //Deliverer start
+    //getDeliverer
+    [Constant.FETCH_DELIVERER]: (store) => {
+        console.log(Constant.FETCH_DELIVERER);
+        axios.get(APIConstant.FETCH_DATA_DELIVERER)
+        .then(res=>{
+            console.log(res.data);
+            store.commit(Constant.FETCH_DELIVERER, res.data);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    },
+
+    //getDelivererDetail
+    [Constant.FETCH_DELIVERER_DETAIL]: (store, payload) => {
+        console.log(Constant.FETCH_DELIVERER_DETAIL);
+        axios.get(APIConstant.FETCH_DATA_DELIVERER_DETAIL.replace("${id}", payload))
+        .then(res=>{
+            console.log(res.data);
+            store.commit(Constant.FETCH_DELIVERER_DETAIL, res.data);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    },
+
+    //insertDeliverer
+    [Constant.INSERT_DELIVERER]: (store, payload) => {
+        console.log(Constant.INSERT_DELIVERER);
+        axios.post(APIConstant.INSERT_DATA_DELIVERER, payload)
+        .then(res=>{
+            console.log(res.data);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    },
+
+    //updateDeliverer
+    [Constant.UPDATE_DELIVERER]: (store, payload) => {
+        console.log(Constant.UPDATE_DELIVERER);
+        console.log(payload);
+    },
+
+    //deleteDeliverer
+    [Constant.DELETE_DELIVERER]: (store, payload) => {
+        console.log(Constant.DELETE_DELIVERER);
+        console.log(payload);
+
+    },
+
+    //Deliverer end
     //category start
     //getCategory
     [Constant.FETCH_CATEGORY]: (store) => {
+        console.log(Constant.FETCH_CATEGORY);
         axios.get(APIConstant.FETCH_DATA_CATEGORY)
         .then(res=>{
             console.log(res.data);
@@ -108,17 +167,82 @@ export default {
     },
     //updateCategory
     [Constant.UPDATE_CATEGORY]: (store, payload) => {
+        console.log(Constant.UPDATE_CATEGORY);
         console.log("Not implement");
     },
     //deleteCategory
     [Constant.DELETE_CATEGORY]: (store, payload) => {
+        console.log(Constant.DELETE_CATEGORY);
         console.log("Not implement");
     },
     //category end
 
+    //provider start
+    //getProvider
+    [Constant.FETCH_PROVIDER]: (store) => {
+        console.log(Constant.FETCH_PROVIDER);
+        axios.get(APIConstant.FETCH_DATA_PROVIDER)
+        .then(res=>{
+            console.log(res.data);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    },
+
+    //getProviderDetail
+    [Constant.FETCH_PROVIDER_DETAIL]: (store, payload) => {
+        console.log(Constant.FETCH_PROVIDER_DETAIL);
+        axios.get(APIConstant.FETCH_DATA_PROVIDER_DETAIL.replace("${id}", payload))
+        .then(res=>{
+            console.log(res.data);
+        })
+        .catch(err=>{
+
+        })
+    },
+
+    //insertProvider
+    [Constant.INSERT_PROVIDER]: (store, payload) => {
+        console.log(Constant.INSERT_PROVIDER);
+        axios.post(APIConstant.INSERT_DATA_PROVIDER)
+        .then(res=>{
+            console.log(res.data);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    },
+
+    //updateProvider
+    [Constant.UPDATE_PROVIDER]: (store, payload) => {
+        console.log(Constant.UPDATE_PROVIDER);
+        axios.put(APIConstant.UPDATE_DATA_PROVIDER.replace("${id}", payload))
+        .then(res=>{
+            console.log(res.data);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    },
+
+    //deleteProvider
+    [Constant.DELETE_PROVIDER]: (store, payload) => {
+        console.log(Constant.DELETE_PROVIDER);
+        axios.delete(APIConstant.DELETE_DATA_PROVIDER.replace("${id}", payload))
+        .then(res=>{
+            console.log(res.data);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    },
+    //provider end
+
     //goods start
     //getGoods
     [Constant.FETCH_GOODS]: (store) => {
+        console.log(Constant.FETCH_GOODS);
         axios.get(APIConstant.FETCH_DATA_GOODS)
         .then(res=>{
             // console.log(res.data);
@@ -130,6 +254,7 @@ export default {
     },
     // searchGoods
     [Constant.FETCH_GOODS_SEARCH]: (store, payload) => {
+        console.log(Constant.FETCH_GOODS_SEARCH);
         // var option = {state: payload.state.selected, first: payload.fCategory.selected, second: payload.sCategory.selected, }
         console.log(payload);
         axios.get(APIConstant.FETCH_DATA_GOODS_SEARCH.replace("${id}", payload))
@@ -142,6 +267,7 @@ export default {
     },
     // insertGoods
     [Constant.INSERT_GOODS]: (store, payload) => {
+        console.log(Constant.INSERT_GOODS);
         console.log(payload);
         axios.post(APIConstant.INSERT_DATA_GOODS, payload.formData)
         .then(()=>{
@@ -154,6 +280,7 @@ export default {
     },
     // getGoodsDetail
     [Constant.FETCH_GOODS_DETAIL]: (store, payload) => {
+        console.log(Constant.FETCH_GOODS_DETAIL);
         axios.get(APIConstant.FETCH_DATA_GOODS_DETAIL.replace("${id}", payload))
         .then(res=>{
             console.log(res.data);
@@ -165,7 +292,7 @@ export default {
     },
     // updateGoods
     [Constant.UPDATE_GOODS]: (store, payload) => {
-        console.log(payload);
+        console.log(Constant.UPDATE_GOODS);
         axios.post(APIConstant.UPDATE_DATA_GOODS, payload)
         .then(res=>{
             store.commit(Constant.FETCH_GOODS_SEARCH, {id: payload.id});
@@ -177,7 +304,7 @@ export default {
     },
     // deleteGoods
     [Constant.DELETE_GOODS]: (store, payload) => {
-        console.log(payload);
+        console.log(Constant.DELETE_GOODS);
         axios.delete(APIConstant.DELETE_DATA_GOODS.replace("${id}", payload.id), payload)
         .then(res=>{
             console.log(res);
@@ -194,6 +321,7 @@ export default {
     //order start
     // getOrder
     [Constant.FETCH_ORDER]: (store, payload) => {
+        console.log(Constant.FETCH_ORDER);
         axios.get(APIConstant.FETCH_DATA_ORDER)
         .then(res=> {
             console.log(res.data);
@@ -205,6 +333,7 @@ export default {
     },
     // insertOrder
     [Constant.INSERT_ORDER]: (store, payload) => {
+        console.log(Constant.INSERT_ORDER);
         var formData = payload;
         console.log(formData);
         axios.post(APIConstant.INSERT_DATA_GOODS, formData)
@@ -217,17 +346,18 @@ export default {
     },
     // updateOrder
     [Constant.UPDATE_ORDER]: (store, payload) => {
-        
+        console.log(Constant.UPDATE_ORDER);
     },
     // deleteOrder
     [Constant.DELETE_ORDER]: (store, payload) => {
-
+        console.log(Constant.DELETE_ORDER);
     },
     //Order end
 
     //Purchase start
     //getPurchase
     [Constant.FETCH_PURCHASE]: (store) => {
+        console.log(Constant.FETCH_PURCHASE);
         axios.get(APIConstant.FETCH_DATA_PURCHASE)
         .then(res=>{
             console.log(res.data);
@@ -237,6 +367,74 @@ export default {
             console.log(err);
         })
     },
-
+    //getPurchaseDetail
+    [Constant.FETCH_PURCHASE_DETAIL]: (store, payload) => {
+        console.log(Constant.FETCH_PURCHASE_DETAIL);
+        axios.get(APIConstant.FETCH_DATA_PURCHASE_DETAIL.replace("${id}", payload))
+        .then(res=>{
+            console.log(res.data);
+            store.commit(Constant.FETCH_PURCHASE_DETAIL, res.data);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    },
+    //searchPurchase
+    [Constant.FETCH_PURCHASE_SEARCH]: (store, payload) => {
+        console.log(Constant.FETCH_PURCHASE_SEARCH);
+        switch (payload.condition) {
+            case "id":
+                axios.get(APIConstant.FETCH_DATA_PURCHASE_BY_ID)
+                .then(res=>{
+                    console.log(res.data);
+                })
+                .catch(err=>{
+                    console.log(err);
+                })
+                break;
+            case "name":
+                axios.get(APIConstant.FETCH_DATA_PURCHASE_BY_NAME)
+                .then(res=>{
+                    console.log(res.data);
+                })
+                .catch(err=>{
+                    console.log(err);
+                })
+                break;
+        }
+    },
+    //insertPurchase
+    [Constant.INSERT_PURCHASE]: (store, payload) => {
+        console.log(Constant.INSERT_PURCHASE);
+        axios.post(APIConstant.INSERT_DATA_PURCHASE)
+        .then(res=>{
+            console.log(res.data);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    },
+    //updatePurchase
+    [Constant.UPDATE_PURCHASE]: (store, payload) => {
+        console.log(Constant.UPDATE_PURCHASE);
+        axios.put(APIConstant.UPDATE_DATA_PURCHASE)
+        .then(res=>{
+            console.log(res.data);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    },
+    //deletePurchase
+    [Constant.DELETE_PURCHASE]: (store, payload) => {
+        console.log(Constant.DELETE_PURCHASE);
+        axios.delete(APIConstant.DELETE_DATA_PURCHASE.replace("${id}", payload))
+        .then(res=>{
+            console.log(res.data);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    }
     //Purchase end
 }

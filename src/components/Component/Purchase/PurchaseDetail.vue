@@ -1,27 +1,21 @@
 <template>
-    <div class="d-inline float-right">
-        <b-button v-b-modal.modal-1 variant="transparent" class="btn-outline-secondary">상품 등록</b-button>
-
-        <b-modal id="modal-1" size="xl" :title="info.title" hide-footer="" ref="modal-1"
-        centered footer-class="m-auto" >
-            <div style="width:90%;margin:1% auto;">
-                <h2>상품정보</h2>
+    <div style="overflow-y:scroll">
+        <div style="width:90%;margin:1% auto;">
+            <div><span class="h2">매입처 수정</span> <button class="d-inline btn btn-outline-danger float-right" @click="deleteGoods">삭제</button></div>
                 <hr />            
-                <table class="table">
+                <!-- <table class="table">
                     <tr>
                         <th class="text-center align-middle" style="background: rgba(241,241,241);">
                             거래처
                         </th>
                         <td>
-                            <b-form-select v-model="item.tbCustomer_ID" :options="$store.state.clientName"></b-form-select>
-                            <!-- <b-form-input v-model="item.itemName" placeholder="상품명"></b-form-input> -->
+                            <b-form-select v-model="item.tbCustomer_ID" :options="clientName"></b-form-select>
                         </td>
                         <th class="text-center align-middle" style="background: rgba(241,241,241);">
                             공급사
                         </th>
                         <td>
                             <b-form-select v-model="item.bName" :options="purchase"></b-form-select>
-                            <!-- <b-form-input v-model="item.itemName" placeholder="상품명"></b-form-input> -->
                         </td>
                     </tr>
                     <tr>
@@ -121,41 +115,33 @@
                     <tr>
                         <th class="text-center align-middle" style="background: rgba(241,241,241);">이미지</th>
                         <td colspan="3">
+                            <img :src="item.multipartFile" alt="thumbnail">
+                            <br>
                             <input type="file" ref="photofile" name="photo">
                         </td>
                     </tr>
-                </table>
+                </table> -->
+                {{item}}
                 <div class="text-center">
-                    <b-button class="btn btn-success w-25" @click="reqOrder">등록</b-button>
-                    <b-button class="btn btn-warning w-25" @click="$refs['modal-1'].hide()">취소</b-button>
+                    <b-button class="btn btn-success w-25" @click="reqUpdate">수정</b-button>
+                    <b-button class="btn btn-warning w-25" @click="cancel">목록으로</b-button>
                 </div>
             </div>
-            
-        </b-modal>
     </div>
 </template>
 
 <script>
     import Constant from '../../../Constant';
     export default {
-        name: "GoodsModal",
+        name: "PurchaseDetail",
         props: ["info"],
         computed: {
             item(){
-                var data = Object.assign({}, this.$store.state.item);
-                return data;
+                return this.$store.state.purchase;
             },
-            purchase() {
-                var data = [];
-                for (const object of this.$store.state.purchaseList) {
-                    data.push({text: object.bName+"("+object.id+")", value: object.bName});
-                }
-                return data;
-            }
         },
         data() {
             return {
-                file: "",
                 select: {
                     fCategory: {
                         selected: 'all',
@@ -179,24 +165,29 @@
             }
         },
         methods: {
-            reqOrder(){
+            reqUpdate(){
                 var formData = new FormData();
                 for (const key in this.item) {
                     const element = this.item[key];
-                    console.log(key+", "+element);
+                    // console.log(key+", "+element);
                     formData.append(key.toString(), element);
                 }
                 if(this.item !== "undefined"){
                     var file = this.$refs.photofile.files[0];
-                    this.item.multipartFile = file;
                     formData.append("multipartFile", file);
                 }
-                // console.log(this.item);
-                // console.log(this.$store.state.item);
-                this.$store.dispatch(Constant.INSERT_GOODS, {formData: formData, item: this.item});
-                Object.assign(this.item, this.$store.state.item);
-                this.$refs['modal-1'].hide();
+                console.log(this.item);
+                this.$store.dispatch(Constant.UPDATE_GOODS, this.item);
+            },
+            cancel() {
+                this.$store.commit(Constant.CHANGE_PAGE, {component: "Purchase"})
+            },
+            deleteGoods() {
+                this.$store.dispatch(Constant.DELETE_GOODS, this.item);
             }
+        },
+        mounted() {
+            console.log(this.item.id);
         },
     }
 </script>
