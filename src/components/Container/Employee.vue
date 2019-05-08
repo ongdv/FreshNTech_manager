@@ -46,12 +46,12 @@
             }
         },
         methods: {
-            searchEmployee() {
+            searchEmployee(search) {
                 this.isBusy = true;
                 setTimeout(() => {
                     this.isBusy = false;    
                 }, 2000);
-                this.$store.dispatch(Constant.FETCH_EMPLOYEE);
+                this.$store.dispatch(Constant.FETCH_EMPLOYEE, search);
             },
             rowSelected(items) {
                 this.$store.dispatch(Constant.FETCH_EMPLOYEE_DETAIL, items[0].id);

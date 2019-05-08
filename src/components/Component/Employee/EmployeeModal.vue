@@ -38,7 +38,84 @@
                             <b-form-input v-model="item.userPW" type="password" placeholder="패스워드"></b-form-input>
                         </td>
                     </tr>
-                    
+                    <tr>
+                        <th class="text-center align-middle" style="background: rgba(241,241,241);">
+                            상품 관리 권한
+                        </th>
+                        <td>
+                            <b-form-select v-model="item.itemAccess" :options="permitList"></b-form-select>
+                        </td>
+                        <th class="text-center align-middle" style="background: rgba(241,241,241);">
+                            거래처 관리 권한
+                        </th>
+                        <td>
+                            <b-form-select v-model="item.customerAccess" :options="permitList"></b-form-select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" style="background: rgba(241,241,241);">
+                            공급자 관리 권한
+                        </th>
+                        <td>
+                            <b-form-select v-model="item.providerAccess" :options="permitList"></b-form-select>
+                        </td>
+                        <th class="text-center align-middle" style="background: rgba(241,241,241);">
+                            배송자 관리 권한
+                        </th>
+                        <td>
+                            <b-form-select v-model="item.delivererAcces" :options="permitList"></b-form-select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" style="background: rgba(241,241,241);">
+                            주문 관리 권한
+                        </th>
+                        <td>
+                            <b-form-select v-model="item.orderAccess" :options="permitList"></b-form-select>
+                        </td>
+                        <th class="text-center align-middle" style="background: rgba(241,241,241);">
+                            발주 관리 권한
+                        </th>
+                        <td>
+                            <b-form-select v-model="item.purchaseAccess" :options="permitList"></b-form-select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" style="background: rgba(241,241,241);">
+                            공지 관리 권한
+                        </th>
+                        <td>
+                            <b-form-select v-model="item.noticeAccess" :options="permitList"></b-form-select>
+                        </td>
+                        <th class="text-center align-middle" style="background: rgba(241,241,241);">
+                            정산 관리 권한
+                        </th>
+                        <td>
+                            <b-form-select v-model="item.paymentAccess" :options="permitList"></b-form-select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" style="background: rgba(241,241,241);">
+                            비고
+                        </th>
+                        <td colspan="3">
+                            <b-form-textarea
+                                v-model="item.remark1"
+                                placeholder="비고란1"
+                                rows="1" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" style="background: rgba(241,241,241);">
+                            메모
+                        </th>
+                        <td colspan="3">
+                            <b-form-textarea
+                                v-model="item.memo"
+                                placeholder="메모"
+                                rows="1" />
+                        </td>
+                    </tr>
                 </table>
                 
                 <div class="text-center">
@@ -78,6 +155,20 @@
                     {
                         text: "영업",
                         value: "sales"
+                    }
+                ],
+                permitList: [
+                    {
+                        text: "권한 없음",
+                        value: "n"
+                    },
+                    {
+                        text: "읽기만",
+                        value: "r"
+                    },
+                    {
+                        text: "읽기/쓰기",
+                        value: "w"
                     }
                 ]
             }

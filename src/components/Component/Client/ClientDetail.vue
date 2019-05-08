@@ -17,7 +17,7 @@
                         </th>
                         <td>
                             <!-- <b-form-select v-model="item.bName" :options="purchase"></b-form-select> -->
-                            <b-form-input v-model="item.bnumber" placeholder="상품명"></b-form-input>
+                            <b-form-input v-model="item.bnumber" placeholder="사업자 등록번호"></b-form-input>
                         </td>
                     </tr>
                     <tr>

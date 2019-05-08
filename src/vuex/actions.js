@@ -41,6 +41,7 @@ export default {
             console.log(err);
         })
     },
+    //insertEmployee
     [Constant.INSERT_EMPLOYEE]: (store, payload) => {
         console.log(Constant.INSERT_EMPLOYEE);
         axios.post(APIConstant.INSERT_DATA_EMPLOYEE, payload)
@@ -52,12 +53,36 @@ export default {
             console.log(err);
         })
     },
+    //updateEmployee
+    [Constant.UPDATE_EMPLOYEE]: (store, payload) => {
+        console.log(Constant.UPDATE_EMPLOYEE);
+        axios.put(APIConstant.UPDATE_DATA_EMPLOYEE.replace("${id}", payload))
+        .then(res=>{
+            console.log(res.data);
+            store.commit(Constant.FETCH_EMPLOYEE_DETAIL, payload);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    },
+    //deleteEmployee
+    [Constant.DELETE_EMPLOYEE]: (store, payload) => {
+        console.log(Constant.DELETE_EMPLOYEE);
+        axios.delete(APIConstant.DELETE_DATA_EMPLOYEE.replace("${id}", payload))
+        .then(res=>{
+            console.log(res.datta);
+            store.commit(Constant.CHANGE_PAGE, "Employee");
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    },
     //Employee end
     //Client start
     // getClient
-    [Constant.FETCH_CLIENT]: (store) => {
+    [Constant.FETCH_CLIENT]: (store, payload) => {
         console.log(Constant.FETCH_CLIENT);
-        axios.get(APIConstant.FETCH_DATA_CLIENT)
+        axios.get(APIConstant.FETCH_DATA_CLIENT.replace("${id}", payload))
         .then(res=>{
             console.log(res.data);
             store.commit(Constant.FETCH_CLIENT, res.data);

@@ -46,9 +46,6 @@
                this.$emit("rowSelected", items);
            }
        },
-       mounted() {
-           console.log("mounted");
-       },
        watch: {
            employeeList(){
                this.isBusy = true;

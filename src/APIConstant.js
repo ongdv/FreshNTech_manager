@@ -42,6 +42,7 @@ export default {
 
     //Emplyoee
     FETCH_DATA_EMPLOYEE: BASE_URL+"members", //getEmployee => get
+    FETCH_DATA_EMPLOYEE_SEARCH: BASE_URL+"members", //searchEmployee => get
     FETCH_DATA_EMPLOYEE_DETAIL: BASE_URL+"members/${id}", //getEmployeeDetail => get
     INSERT_DATA_EMPLOYEE: BASE_URL+"members", //insertEmployee => post
     UPDATE_DATA_EMPLOYEE: BASE_URL+"members", //updateEmployee => put
