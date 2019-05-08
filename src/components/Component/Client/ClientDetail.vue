@@ -10,14 +10,14 @@
                         </th>
                         <td>
                             <!-- <b-form-select v-model="item.tbCustomer_ID" :options="$store.state.clientName"></b-form-select> -->
-                            <b-form-input v-model="item.bName" placeholder="거래처명"></b-form-input>
+                            <b-form-input v-model="item.bname" placeholder="거래처명"></b-form-input>
                         </td>
                         <th class="text-center align-middle" style="background: rgba(241,241,241);">
                             사업자 등록번호
                         </th>
                         <td>
                             <!-- <b-form-select v-model="item.bName" :options="purchase"></b-form-select> -->
-                            <b-form-input v-model="item.bNumber" placeholder="상품명"></b-form-input>
+                            <b-form-input v-model="item.bnumber" placeholder="상품명"></b-form-input>
                         </td>
                     </tr>
                     <tr>
@@ -128,9 +128,6 @@
             delivererList(){
                 return this.$store.state.delivererList;
             },
-            salesmanList(){
-                return this.$store.state.salesmanList;
-            }
         },
         data() {
             return {

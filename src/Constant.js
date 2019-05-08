@@ -3,8 +3,16 @@ export default {
     LOGIN: "login",
     LOGOUT: "logout",
     CHANGE_PAGE: "changePage", // 페이지 전환
-    FETCH_READY: "fetchReady", // 직원, 거래처 목록 불러오기
+    REQUEST_SUCCESS: "requestSuccess",
+    REQUEST_FAILURE: "requestFailure",
     
+    //Employee
+    FETCH_EMPLOYEE: "fetchEmployee", //직원 목록 불러오기
+    FETCH_EMPLOYEE_DETAIL: "fetchEmployeeDetail", //직원 상세보기
+    INSERT_EMPLOYEE: "insertEmployee", //직원 등록
+    UPDATE_EMPLOYEE: "updateEmployee", //직원 수정
+    DELETE_EMPLOYEE: "deleteEmployee", //직원 삭제
+
     //Providers
     FETCH_PROVIDER: "fetchProvider", //매입처 목록 불러오기
     FETCH_PROVIDER_DETAIL: "fetchProviderDetail", //매입처 상세보기

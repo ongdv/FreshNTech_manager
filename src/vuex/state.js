@@ -44,10 +44,14 @@ export default {
             ]
         },
         {
-            name: "매입처 관리",
+            name: "매입 관리",
             menus: [
                 {
                     name: "매입처 목록",
+                    component: "Provider"
+                },
+                {
+                    name: "발주 목록",
                     component: "Purchase"
                 }
             ]
@@ -94,7 +98,8 @@ export default {
     ],
     orderList: [], //주문 목록
     goodsList: [], //상품 목록
-    employee: [], //직원 목록
+    employeeList: [], //직원 목록
+    employee: {}, //직원 상세보기
     clientList: [], //거래처 목록 
     clientName: [], //거래처 이름 목록
     client: {},
@@ -122,9 +127,9 @@ export default {
     },
     fCategory: [], //1차 카테고리
     sCategory: [], //2차 카테고리
-    purchaseField:[
+    providerField:[
         {
-            key: 'id',
+            key: 'tbProvider_id',
             label: "매입처 코드",
             sortable:true
         },
@@ -139,8 +144,10 @@ export default {
             sortable:true
         },
     ], //매입처 테이블 필드
-    purchaseList: [], //매입처 목록
-    purchase:{}, //매입처 상세보기 필드
+    purchaseList: [], //발주 목록
+    purchase:{}, //발주 상세보기 필드
+    providerList:[], //매입처 목록
+    provider:{}, //매입처 상세보기 필드
     goods:{}, //상품 상세보기 
     clientFields: [ //거래처 테이블 필드
         {
@@ -149,7 +156,7 @@ export default {
             sortable: true
         },
         {
-            key: 'bName',
+            key: 'bname',
             label: "거래처명",
             sortable: true
         },
@@ -260,5 +267,42 @@ export default {
         priceRate:"",
         tbDeliverer_ID:"",
         salesman_ID:""
+    },
+    employeeFiled: [
+        {
+            key: 'id',
+            label: 'ID',
+            sortable:true
+        },
+        {
+            key: 'name',
+            label: '이름',
+            sortable:true
+        },
+        {
+            key: 'role',
+            label: '구분',
+            sortable:true
+        }
+    ],
+    employeeItem: {
+        id: "",
+        userPW: "",
+        name: "",
+        role: "",
+        itemAccess: "",
+        customerAccess: "",
+        providerAccess: "",
+        delivererAcces: "",
+        orderAccess: "",
+        purchaseAccess: "",
+        noticeAccess: "",
+        paymentAccess: "",
+        remark1: "",
+        remark2: "",
+        remark3: "",
+        remark4: "",
+        remark5: "",
+        memo: ""
     }
 }

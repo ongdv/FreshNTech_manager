@@ -35,6 +35,20 @@ export default {
     },
     //Common end
 
+    //Employee start
+    //getEmployee
+    [Constant.FETCH_EMPLOYEE]: (state, payload) => {
+        console.log(payload);
+        state.employeeList = payload;
+    },
+    //getEmployeeDetail
+    [Constant.FETCH_EMPLOYEE_DETAIL]: (state, payload) => {
+        console.log(payload);
+        state.employee = payload;
+        state.layoutView = "EmployeeDetail";
+    },
+    //Employee end
+
     //Provider start
     //getProvider
     [Constant.FETCH_PROVIDER]: (state, payload) => {
@@ -45,6 +59,7 @@ export default {
     [Constant.FETCH_PROVIDER_DETAIL]: (state, payload) => {
         console.log(payload);
         state.provider = payload;
+        state.layoutView = "ProviderDetail";
     },
     
     //Provider end
@@ -52,13 +67,14 @@ export default {
     // getClient
     [Constant.FETCH_CLIENT]: (state, payload) => {
         console.log(payload);
-        payload[0].forEach(item=>{
-            state.delivererList.push({value: item.delivererId, text: item.delivererManager});
-        });
-        state.clientList = payload[1];
-        payload[2].forEach(item=>{
-            state.salesmanList.push({value: item.sId, text: item.sManager});
-        });
+        state.clientList = payload;
+        // payload[0].forEach(item=>{
+        //     state.delivererList.push({value: item.delivererId, text: item.delivererManager});
+        // });
+        // state.clientList = payload[1];
+        // payload[2].forEach(item=>{
+        //     state.salesmanList.push({value: item.sId, text: item.sManager});
+        // });
     },
     //searchClient
     [Constant.FETCH_CLIENT_SEARCH]: (state, payload) => {
@@ -70,7 +86,7 @@ export default {
     //getClientDetail
     [Constant.FETCH_CLIENT_DETAIL]: (state, payload) => {
         console.log(payload);
-        state.client = payload[0];
+        state.client = payload;
         state.layoutView = "ClientDetail";
     },
     //deleteClient

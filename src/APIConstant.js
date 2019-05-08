@@ -49,7 +49,7 @@ export default {
 
     //Goods
     FETCH_DATA_GOODS: BASE_URL+"items", //getGoodsList => get
-    FETCH_DATA_GOODS_DETAIL: BASE_URL+"item${id}", //getGoods => get
+    FETCH_DATA_GOODS_DETAIL: BASE_URL+"items/${id}", //getGoods => get
     INSERT_DATA_GOODS: BASE_URL+"items", //insertGoods => post
     UPDATE_DATA_GOODS: BASE_URL+"items/${id}", //updateGoods => post
     DELETE_DATA_GOODS: BASE_URL+"items/${id}", //deleteGoods => delete

@@ -13,15 +13,19 @@
     import SidebarItem from './SidebarItem.vue'
     import Order from '../../Container/Order.vue';
     import Main from '../../Container/Main.vue';
-    import Goods from '../../Container/Goods.vue';
     import Category from '../../Container/Category.vue';
+    import Goods from '../../Container/Goods.vue';
     import GoodsDetail from '../Goods/GoodsDetail.vue';
     import Client from '../../Container/Client.vue';
     import ClientDetail from '../Client/ClientDetail.vue';
     import Deliverer from '../../Container/Deliverer.vue';
+    import DelivererDetail from '../Deliverer/DelivererDetail.vue';
+    import Provider from '../../Container/Provider.vue';
+    import ProviderDetail from '../Provider/ProviderDetail.vue';
     import Purchase from '../../Container/Purchase.vue';
-    import PurchaseDetail from '../Purchase/PurchaseDetail.vue'
+    import PurchaseDetail from '../Purchase/PurchaseDetail.vue';
     import Employee from '../../Container/Employee.vue';
+    import EmployeeDetail from '../Employee/EmployeeDetail.vue';
     
     import Test from '../../Container/Test.vue';
     export default {
@@ -33,9 +37,10 @@
             Category,
             Goods, GoodsDetail,
             Client, ClientDetail,
+            Provider, ProviderDetail,
             Purchase, PurchaseDetail,
-            Employee,
-            Deliverer //Component
+            Employee, EmployeeDetail,
+            Deliverer, DelivererDetail, //Component
         },
         computed: {
             list() {

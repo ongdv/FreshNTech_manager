@@ -11,7 +11,7 @@
                 :rows="rows"
                 :fields="fields"
                 :isBusy="isBusy"
-                v-on:rowSelected="rowSelected"/>
+                @rowSelected="rowSelected"/>
             <hr>
         </div>
     </div>

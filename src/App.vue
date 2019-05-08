@@ -19,7 +19,6 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch(Constant.FETCH_READY);
     this.$store.dispatch(Constant.FETCH_CATEGORY);
     this.$store.dispatch(Constant.FETCH_PURCHASE);
     this.$store.dispatch(Constant.FETCH_GOODS);
@@ -27,6 +26,7 @@ export default {
     this.$store.dispatch(Constant.FETCH_CLIENT);
     this.$store.dispatch(Constant.FETCH_DELIVERER);
     this.$store.dispatch(Constant.FETCH_PROVIDER);
+    this.$store.dispatch(Constant.FETCH_EMPLOYEE);
     // console.log(this.$store.state.clientName);
   },
 }

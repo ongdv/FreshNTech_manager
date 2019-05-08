@@ -12,29 +12,47 @@ export default {
             username: "관리자"
         }
         store.commit(Constant.LOGIN, formData);
-        // axios.post(APIConstant.LOGIN, payload.form)
-        // .then(res=>{
-        //     console.log(res.data);
-        //     // store.commit(Constant.LOGIN, {user: res.data});
-        // })
-        // .catch(err=>{
-        //     console.log(err);
-        // })
     },
-    // // getEmployee, getClient
-    // [Constant.FETCH_READY]: (store) => {
-    //     axios.get(APIConstant.FERCH_DATA_ORDER_READY)
-    //     .then(res=>{
-    //         console.log(res.data);
-    //         store.commit(Constant.FETCH_READY, res.data);
-    //     })
-    //     .catch(err=>{
-    //         console.log(err);
-    //     })
-    // },
 
     //common end
 
+    //Employee start
+    //getEmployee
+    [Constant.FETCH_EMPLOYEE]: (store) => {
+        console.log(Constant.FETCH_EMPLOYEE);
+        axios.get(APIConstant.FETCH_DATA_EMPLOYEE)
+        .then(res=>{
+            console.log(res.data);
+            store.commit(Constant.FETCH_EMPLOYEE, res.data);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    },
+    //getEmployeeDetail
+    [Constant.FETCH_EMPLOYEE_DETAIL]: (store, payload) => {
+        console.log(Constant.FETCH_EMPLOYEE_DETAIL);
+        axios.get(APIConstant.FETCH_DATA_EMPLOYEE_DETAIL.replace("${id}", payload))
+        .then(res=>{
+            console.log(res.data);
+            store.commit(Constant.FETCH_EMPLOYEE_DETAIL, res.data);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    },
+    [Constant.INSERT_EMPLOYEE]: (store, payload) => {
+        console.log(Constant.INSERT_EMPLOYEE);
+        axios.post(APIConstant.INSERT_DATA_EMPLOYEE, payload)
+        .then(res=>{
+            console.log(res.data);
+            store.commit(Constant.CHANGE_PAGE, "Employee");
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    },
+    //Employee end
     //Client start
     // getClient
     [Constant.FETCH_CLIENT]: (store) => {
@@ -53,7 +71,7 @@ export default {
         console.log(Constant.FETCH_CLIENT_DETAIL);
         axios.get(APIConstant.FETCH_DATA_CLIENT_DETAIL.replace("${id}", payload))
         .then(res=>{
-            console.log(res);
+            console.log(res.data);
             store.commit(Constant.FETCH_CLIENT_DETAIL, res.data);
         })
         .catch(err=>{
@@ -160,6 +178,7 @@ export default {
         axios.get(APIConstant.FETCH_DATA_CATEGORY)
         .then(res=>{
             console.log(res.data);
+            store.commit(Constant.FETCH_CATEGORY, res.data);
         })
         .catch(err=>{
             console.log(err);
@@ -184,6 +203,7 @@ export default {
         axios.get(APIConstant.FETCH_DATA_PROVIDER)
         .then(res=>{
             console.log(res.data);
+            store.commit(Constant.FETCH_PROVIDER, res.data);
         })
         .catch(err=>{
             console.log(err);
@@ -196,6 +216,7 @@ export default {
         axios.get(APIConstant.FETCH_DATA_PROVIDER_DETAIL.replace("${id}", payload))
         .then(res=>{
             console.log(res.data);
+            store.commit(Constant.FETCH_PROVIDER_DETAIL, res.data);
         })
         .catch(err=>{
 
