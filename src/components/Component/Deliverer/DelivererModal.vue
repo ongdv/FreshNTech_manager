@@ -1,16 +1,20 @@
 <template>
-    <div style="overflow-y:scroll">
-        <div style="width:90%;margin:1% auto;">
-            <div><span class="h2">거래처 정보</span> <button class="d-inline btn btn-outline-danger float-right" @click="deleteGoods">삭제</button></div>
+    <div class="d-inline float-right">
+        <b-button v-b-modal.modal-2 variant="transparent" class="btn-outline-secondary">배송팀 등록</b-button>
+
+        <b-modal id="modal-2" size="xl" hide-footer="" ref="modal-2"
+        centered footer-class="m-auto" >
+            <div style="width:90%;margin:1% auto;">
+                <h2>배송팀 정보</h2>
                 <hr />
                 <table class="table">
                     <tr>
                         <th class="text-center align-middle" style="background: rgba(241,241,241);">
-                            거래처명
+                            배송자명
                         </th>
                         <td>
                             <!-- <b-form-select v-model="item.tbCustomer_ID" :options="$store.state.clientName"></b-form-select> -->
-                            <b-form-input v-model="item.bname" placeholder="거래처명"></b-form-input>
+                            <b-form-input v-model="item.bname" placeholder="배송자명"></b-form-input>
                         </td>
                         <th class="text-center align-middle" style="background: rgba(241,241,241);">
                             사업자 등록번호
@@ -50,10 +54,10 @@
                     </tr>
                     <tr>
                         <th class="text-center align-middle" style="background: rgba(241,241,241);">
-                            할인/할증
+                            FAX 번호
                         </th>
                         <td>
-                            <b-form-input v-model="item.priceRate" type="number" placeholder="할인율"></b-form-input>
+                            <b-form-input v-model="item.fax" type="number" placeholder="FAX번호"></b-form-input>
                         </td>
                         <th class="text-center align-middle" style="background: rgba(241,241,241);">
                             업종
@@ -69,11 +73,11 @@
                         <td>
                             <b-form-input v-model="item.userID"  placeholder="아이디(자동생성)"></b-form-input>
                         </td>
-                        <th class="text-center align-middle" style="background: rgba(241,241,241);">
+                        <th class="text-center align-middle"  style="background: rgba(241,241,241);">
                             패스워드
                         </th>
                         <td>
-                            <b-form-input v-model="item.userPW" placeholder="패스워드"></b-form-input>
+                            <b-form-input v-model="item.userPW" type="password" placeholder="패스워드"></b-form-input>
                         </td>
                     </tr>
                     <tr>
@@ -91,95 +95,48 @@
                         </td>
                     </tr>
                 </table>
-                <h2>배송/영업 담당자 정보</h2>
-                <hr />
-                <table class="table">
-                    <tr>
-                        <th class="text-center align-middle" style="background: rgba(241,241,241);">
-                            배송 담당자
-                        </th>
-                        <td>
-                            <b-form-select v-model="item.tbDeliverer_ID" :options="delivererList"></b-form-select>
-                        </td>
-                        <th class="text-center align-middle" style="background: rgba(241,241,241);">
-                            영업 담당자
-                        </th>
-                        <td>
-                            <b-form-select v-model="item.salesman_ID" :options="salesmanList"></b-form-select>
-                        </td>
-                    </tr>
-                </table>
-                <div><span class="h2">거래처 즐겨찾기 정보</span> <ClientItemModal /> </div>
-                <hr/>
-                <ClientItemTable
-                    :list="clientItemList"
-                    :row="clientItemList.length"
-                    :fields="clientItemFiled"
-                    @rowSelected="rowSelected"
-                />
                 <div class="text-center">
-                    <b-button class="btn btn-success w-25" @click="reqUpdate">수정</b-button>
-                    <b-button class="btn btn-warning w-25" @click="cancel">목록으로</b-button>
+                    <b-button class="btn btn-success w-25" @click="reqRegister">등록</b-button>
+                    <b-button class="btn btn-warning w-25" @click="cancel">취소</b-button>
                 </div>
             </div>
+            
+        </b-modal>
     </div>
 </template>
 
 <script>
-    import Constant from '../../../Constant';
-    import ClientItemTable from './ClientItemTable.vue';
-    import ClientItemModal from './ClientItemModal.vue';
+import Constant from '../../../Constant';
     export default {
-        name: "ClientDetail",
-        components: {
-            ClientItemTable,
-            ClientItemModal
-        },
-        computed: {
+        name: "DeliverModal",
+         computed: {
             item(){
-                return this.$store.state.client;
+                return this.$store.state.delivererItem;
             },
             delivererList(){
-                var data = [];
-                this.$store.state.delivererList.forEach(element => {
-                    data.push({text: element.bname, value: element.id})
-                });
-                return data;
+                return this.$store.state.delivererList;
             },
-            salesmanList() {
-                var data = [];
-                this.$store.state.employeeList.forEach(element => {
-                    data.push({text: element.name, value: element.id})
-                });
-                return data;
-            },
-            clientItemList() {
-                return this.$store.state.clientItemList;
-            },
-            clientItemFiled() {
-                return this.$store.state.clientItemFiled;
+            salesmanList(){
+                return this.$store.state.salesmanList;
             }
         },
         methods: {
-            reqUpdate(){
-                this.$store.dispatch(Constant.UPDATE_CLIENT, this.item);
+            reqRegister(){
+                console.log(this.item);
+                this.$store.dispatch(Constant.INSERT_DELIVERER, this.item);
+                this.$refs['modal-2'].hide();
             },
             cancel() {
-                this.$store.commit(Constant.CHANGE_PAGE, {component: "client"})
+                this.$refs['modal-2'].hide()
+                Object.assign(this.item, this.$store.state.deliverer);
             },
-            deleteGoods() {
-                this.$store.dispatch(Constant.DELETE_CLIENT, this.client.id);
-            },
-            rowSelected(item) {
-                console.log(item);
-                var a = confirm("정말 삭제하시겠습니까?");
-                if(a){
-                    this.$store.dispatch(Constant.DELETE_CLIENT_ITEM, item);   
-                }
-            }
+            
         },
-        mounted() {
-            console.log(this.item);
-        },
+
+        
     }
 </script>
+
+<style>
+
+</style>

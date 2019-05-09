@@ -56,10 +56,10 @@ export default {
     //updateEmployee
     [Constant.UPDATE_EMPLOYEE]: (store, payload) => {
         console.log(Constant.UPDATE_EMPLOYEE);
-        axios.put(APIConstant.UPDATE_DATA_EMPLOYEE.replace("${id}", payload))
+        axios.put(APIConstant.UPDATE_DATA_EMPLOYEE.replace("${id}", payload.id), payload)
         .then(res=>{
             console.log(res.data);
-            store.commit(Constant.FETCH_EMPLOYEE_DETAIL, payload);
+            store.dispatch(Constant.FETCH_EMPLOYEE_DETAIL, payload.id);
         })
         .catch(err=>{
             console.log(err);
@@ -78,6 +78,7 @@ export default {
         })
     },
     //Employee end
+
     //Client start
     // getClient
     [Constant.FETCH_CLIENT]: (store, payload) => {
@@ -131,11 +132,54 @@ export default {
     //updateClient
     [Constant.UPDATE_CLIENT]: (store, payload) => {
         console.log(Constant.UPDATE_CLIENT);
-        axios.put(APIConstant.UPDATE_DATA_CLIENT, payload)
+        axios.put(APIConstant.UPDATE_DATA_CLIENT.replace("${id}", payload.id), payload)
         .then(res=>{
             console.log(res.data);
-            store.commit(Constant.FETCH_CLIENT);
-            store.commit(Constant.FETCH_CLIENT_SEARCH, payload.bName);
+            store.commit(Constant.UPDATE_CLIENT);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    },
+    [Constant.FETCH_CLIENT_ITEM]: (store, payload) => {
+        console.log(payload);
+        axios.get(APIConstant.FETCH_DATA_CLIENT_ITEM.replace("${id}", payload))
+        .then(res=>{
+            console.log(res.data);
+            store.commit(Constant.FETCH_CLIENT_ITEM, res.data);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    },
+    [Constant.INSERT_CLIENT_ITEM]: (store, payload) => {
+        console.log(Constant.INSERT_CLIENT_ITEM);
+        console.log(payload);
+        axios.post(APIConstant.INSERT_DATA_CLIENT_ITEM, payload)
+        .then(res=>{
+            console.log(res.data);
+            store.commit(Constant.CHANGE_PAGE, {component: "Client"})
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    },
+    [Constant.DELETE_CLIENT_ITEM]: (store, payload) => {
+        console.log(Constant.DELETE_CLIENT_ITEM);
+        axios.delete(APIConstant.DELETE_DATA_CLIENT_ITEM.replace("${id}", payload.tbCustomerItemID))
+        .then(res=>{
+            console.log(res.data);
+            store.commit(Constant.CHANGE_PAGE, {component: "Client"})
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    },
+    [Constant.UPDATE_CLIENT_ITEM]: (store, payload) => {
+        console.log(Constant.UPDATE_CLIENT_ITEM);
+        axios.put(APIConstant.UPDATE_CLIENT_ITEM.replace("${id}", payload.id), payload)
+        .then(res=>{
+            console.log(res.data);
         })
         .catch(err=>{
             console.log(err);
@@ -185,7 +229,15 @@ export default {
     //updateDeliverer
     [Constant.UPDATE_DELIVERER]: (store, payload) => {
         console.log(Constant.UPDATE_DELIVERER);
-        console.log(payload);
+        axios.put(APIConstant.UPDATE_DATA_DELIVERER.replace("${id}", payload.id), payload)
+        .then(res=>{
+            console.log(res.data);
+            store.commit(Constant.CHANGE_PAGE, {component: "Deliverer"});
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+
     },
 
     //deleteDeliverer
@@ -196,6 +248,7 @@ export default {
     },
 
     //Deliverer end
+
     //category start
     //getCategory
     [Constant.FETCH_CATEGORY]: (store) => {
@@ -251,9 +304,9 @@ export default {
     //insertProvider
     [Constant.INSERT_PROVIDER]: (store, payload) => {
         console.log(Constant.INSERT_PROVIDER);
-        axios.post(APIConstant.INSERT_DATA_PROVIDER)
+        axios.post(APIConstant.INSERT_DATA_PROVIDER, payload)
         .then(res=>{
-            console.log(res.data);
+            store.dispatch(Constant.FETCH_PROVIDER);
         })
         .catch(err=>{
             console.log(err);
@@ -263,9 +316,10 @@ export default {
     //updateProvider
     [Constant.UPDATE_PROVIDER]: (store, payload) => {
         console.log(Constant.UPDATE_PROVIDER);
-        axios.put(APIConstant.UPDATE_DATA_PROVIDER.replace("${id}", payload))
+        axios.put(APIConstant.UPDATE_DATA_PROVIDER.replace("${id}", payload.id), payload)
         .then(res=>{
             console.log(res.data);
+            store.dispatch(Constant.FETCH_PROVIDER_DETAIL, payload.id);
         })
         .catch(err=>{
             console.log(err);
@@ -278,6 +332,7 @@ export default {
         axios.delete(APIConstant.DELETE_DATA_PROVIDER.replace("${id}", payload))
         .then(res=>{
             console.log(res.data);
+            store.commit(Constant.CHANGE_PAGE, {component: "Provider"})
         })
         .catch(err=>{
             console.log(err);
@@ -292,7 +347,7 @@ export default {
         axios.get(APIConstant.FETCH_DATA_GOODS)
         .then(res=>{
             // console.log(res.data);
-            store.commit(Constant.FETCH_GOODS, {goods: res.data});
+            store.commit(Constant.FETCH_GOODS, res.data);
         })
         .catch(err=>{
             console.log(err);
@@ -339,7 +394,7 @@ export default {
     // updateGoods
     [Constant.UPDATE_GOODS]: (store, payload) => {
         console.log(Constant.UPDATE_GOODS);
-        axios.post(APIConstant.UPDATE_DATA_GOODS, payload)
+        axios.post(APIConstant.UPDATE_DATA_GOODS.replace("${id}", payload.id), payload)
         .then(res=>{
             store.commit(Constant.FETCH_GOODS_SEARCH, {id: payload.id});
         })
@@ -371,7 +426,18 @@ export default {
         axios.get(APIConstant.FETCH_DATA_ORDER)
         .then(res=> {
             console.log(res.data);
-            store.commit(Constant.FETCH_ORDER, {orders: res.data[2]});
+            store.commit(Constant.FETCH_ORDER, res.data);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    },
+    [Constant.FETCH_ORDER_DETAIL]: (store, payload) => {
+        console.log(Constant.FETCH_ORDER_DETAIL);
+        axios.get(APIConstant.FETCH_DATA_ORDER_DETAIL.replace("${id}", payload))
+        .then(res=>{
+            console.log(res.data);
+            store.commit(Constant.FETCH_ORDER_DETAIL, res.data);
         })
         .catch(err=>{
             console.log(err);

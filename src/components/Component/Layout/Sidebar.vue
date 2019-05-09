@@ -12,6 +12,7 @@
 <script>
     import SidebarItem from './SidebarItem.vue'
     import Order from '../../Container/Order.vue';
+    import OrderDetail from '../Order/OrderDetail.vue';
     import Main from '../../Container/Main.vue';
     import Category from '../../Container/Category.vue';
     import Goods from '../../Container/Goods.vue';
@@ -32,7 +33,7 @@
         name: "Sidebar",
         components: {
             SidebarItem,
-            Order,
+            Order, OrderDetail,
             Main,
             Category,
             Goods, GoodsDetail,

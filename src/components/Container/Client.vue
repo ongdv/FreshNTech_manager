@@ -22,6 +22,7 @@
     import ClientModal from '../Component/Client/ClientModal.vue';
     import ClientTable from '../Component/Client/ClientTable.vue';
     import ClientSearchTask from '../Component/Client/ClientSearchTask.vue';
+    
     export default {
         name: "Client",
         components: {
@@ -58,6 +59,8 @@
                 this.$store.commit(Constant.FETCH_CLIENT_SEARCH, key);
             },
             rowSelected(items){
+                console.log(items);
+                this.$store.dispatch(Constant.FETCH_CLIENT_ITEM, items[0].id);
                 this.$store.dispatch(Constant.FETCH_CLIENT_DETAIL, items[0].id);
             }
         },

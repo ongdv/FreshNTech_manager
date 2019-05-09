@@ -10,7 +10,7 @@
                 />
             <GoodsTable 
                 :fields="fields"
-                :goodsList="goodsList"
+                :list="goodsList"
                 :busy="isBusy"
                 :rows="rows"
                 :select="select"
@@ -84,24 +84,18 @@
         },
         methods: {
             searchGoods(search){
-                this.isBusy = !this.isBusy
                 console.log(search);
                 this.$store.dispatch(Constant.FETCH_GOODS_SEARCH, search);
-                setTimeout(()=>{
-                    this.isBusy = !this.isBusy;
-                }, 1000);
             },
             rowSelected(items){
+                console.log(items);
                 this.$store.dispatch(Constant.FETCH_GOODS_DETAIL, items[0].id);
             }
         },
         mounted() {
             // this.$on('searchGoods', this.searchGoods);
             this.$store.dispatch(Constant.FETCH_GOODS)
-        },
-        watch: {
-            
-        },
+        }
     }
 </script>
 

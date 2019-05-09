@@ -150,25 +150,25 @@
                 roleList: [
                     {
                         text: "관리자",
-                        value: "admin"
+                        value: "관리자"
                     },
                     {
                         text: "영업",
-                        value: "sales"
+                        value: "영업"
                     }
                 ],
                 permitList: [
                     {
                         text: "권한 없음",
-                        value: "n"
+                        value: "N"
                     },
                     {
                         text: "읽기만",
-                        value: "r"
+                        value: "R"
                     },
                     {
                         text: "읽기/쓰기",
-                        value: "w"
+                        value: "W"
                     }
                 ]
             }

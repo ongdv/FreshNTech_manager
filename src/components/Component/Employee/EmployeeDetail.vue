@@ -116,8 +116,8 @@
                 </table>
                 
                 <div class="text-center">
-                    <b-button class="btn btn-success w-25" @click="reqRegister">등록</b-button>
-                    <b-button class="btn btn-warning w-25" @click="cancel">취소</b-button>
+                    <b-button class="btn btn-success w-25" @click="reqRegister">수정</b-button>
+                    <b-button class="btn btn-warning w-25" @click="cancel">목록으로</b-button>
                 </div>
             </div>
     </div>

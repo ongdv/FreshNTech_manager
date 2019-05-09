@@ -6,20 +6,16 @@
                 stripped
                 selectable
                 selectedVariant=""
+                selected
                 :items="list"
                 :fields="fields"
                 :per-page="perPage"
                 :current-page="currentPage"
-                :busy="isBusy"
-                select-mode="single"
                 @row-selected="rowSelected"
+                select-mode="single"
                 primary-key="No"
                 class="text-center"
         >
-            <div slot="table-busy" class="text-center text-secondary my-2">
-                <b-spinner class="align-middle"></b-spinner>
-                <strong>Loading...</strong>
-            </div>
         </b-table>
         <b-pagination
             v-model="currentPage"
@@ -32,8 +28,8 @@
 
 <script>
     export default {
-       name: "ProviderTable",
-       props: ["list", "rows", "fields", ],
+       name: "ClientItemTable",
+       props: ["list", "rows", "fields"],
        data() {
            return {
                 currentPage: 1,
@@ -43,15 +39,7 @@
        },
        methods: {
            rowSelected(items){
-               this.$emit("rowSelected", items);
-           }
-       },
-       watch: {
-           list(){
-               this.isBusy = true;
-               setTimeout(() => {
-                   this.isBusy = false;
-               }, 1000);
+               this.$emit("rowSelected", items[0]);
            }
        },
     }

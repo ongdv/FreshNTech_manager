@@ -14,14 +14,19 @@ export default {
     FETCH_DATA_CLIENT: BASE_URL+"customers", //getClient => get
     FETCH_DATA_CLIENT_DETAIL: BASE_URL+"customers/${id}", //getClientDetail => get
     INSERT_DATA_CLIENT: BASE_URL+"customers", //insertClient => post
-    UPDATE_DATA_CLIENT: BASE_URL+"customers",//updateClient => put
+    UPDATE_DATA_CLIENT: BASE_URL+"customers/${id}",//updateClient => put
     DELETE_DATA_CLIENT: BASE_URL+"customers/${id}", //deleteClient => delete
+    //ClientItem
+    FETCH_DATA_CLIENT_ITEM: BASE_URL+"pmCustomerItems/${id}",
+    INSERT_DATA_CLIENT_ITEM: BASE_URL+"pmCustomerItems",
+    UPDATE_DATA_CLIENT_ITEM: BASE_URL+"pmCustomerItems/${id}",
+    DELETE_DATA_CLIENT_ITEM: BASE_URL+"pmCustomerItems/${id}",
 
     //Deliverer
     FETCH_DATA_DELIVERER: BASE_URL+"deliverers", //getDeliverer => get
     FETCH_DATA_DELIVERER_DETAIL: BASE_URL+"deliverers/${id}", //getDelivererDetail => get
     INSERT_DATA_DELIVERER: BASE_URL+"deliverers", //insertDeliverer => post 
-    UPDATE_DATA_DELIVERER: BASE_URL+"deliverers", //updateDeliverer => put
+    UPDATE_DATA_DELIVERER: BASE_URL+"deliverers/${id}", //updateDeliverer => put
     DELETE_DATA_DELIVERER: BASE_URL+"deliverers/${id}", //deleteDeliverer => delete
 
     //Provider
@@ -45,7 +50,7 @@ export default {
     FETCH_DATA_EMPLOYEE_SEARCH: BASE_URL+"members", //searchEmployee => get
     FETCH_DATA_EMPLOYEE_DETAIL: BASE_URL+"members/${id}", //getEmployeeDetail => get
     INSERT_DATA_EMPLOYEE: BASE_URL+"members", //insertEmployee => post
-    UPDATE_DATA_EMPLOYEE: BASE_URL+"members", //updateEmployee => put
+    UPDATE_DATA_EMPLOYEE: BASE_URL+"members/${id}", //updateEmployee => put
     DELETE_DATA_EMPLOYEE: BASE_URL+"members/${id}", //deleteEmployee => delete
 
     //Goods
@@ -57,6 +62,6 @@ export default {
 
     //Order
     FETCH_DATA_ORDER: BASE_URL+"orders", //getOrder =>get
-    FETCH_DATA_ORDER_DETAIL: BASE_URL+"orders/detail/${id}", //getOrderDetail => get
+    FETCH_DATA_ORDER_DETAIL: BASE_URL+"orders/${id}", //getOrderDetail => get
     FETCH_DATA_ORDER_SEARCH: BASE_URL+"orders/search", //searchOrder => post
 }

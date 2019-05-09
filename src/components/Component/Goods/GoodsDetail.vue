@@ -9,13 +9,13 @@
                             거래처
                         </th>
                         <td>
-                            <b-form-select v-model="item.tbCustomer_ID" :options="clientName"></b-form-select>
+                            <b-form-select v-model="item.id" :options="clientName"></b-form-select>
                         </td>
                         <th class="text-center align-middle" style="background: rgba(241,241,241);">
                             공급사
                         </th>
                         <td>
-                            <b-form-select v-model="item.bName" :options="purchase"></b-form-select>
+                            <b-form-select v-model="item.mainProvier" :options="purchase"></b-form-select>
                         </td>
                     </tr>
                     <tr>
@@ -140,13 +140,17 @@
             },
             purchase() {
                 var data = [];
-                for (const object of this.$store.state.purchaseList) {
-                    data.push({text: object.bName+"("+object.id+")", value: object.bName});
-                }
+                this.$store.state.providerList.forEach(element => {
+                    data.push({text: element.bname, value: element.bname});
+                });
                 return data;
             },
             clientName() {
-                return this.$store.state.clientName;
+                var data = [];
+                this.$store.state.clientList.forEach(element => {
+                    data.push({text: element.bname, value: element.id});
+                });
+                return data;
             }
         },
         data() {

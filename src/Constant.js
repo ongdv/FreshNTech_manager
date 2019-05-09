@@ -9,6 +9,7 @@ export default {
     //Employee
     FETCH_EMPLOYEE: "fetchEmployee", //직원 목록 불러오기
     FETCH_EMPLOYEE_DETAIL: "fetchEmployeeDetail", //직원 상세보기
+    FETCH_EMPLOYEE_SEARCH: "fetchEmployeeSearch", //직원 검색
     INSERT_EMPLOYEE: "insertEmployee", //직원 등록
     UPDATE_EMPLOYEE: "updateEmployee", //직원 수정
     DELETE_EMPLOYEE: "deleteEmployee", //직원 삭제
@@ -16,6 +17,7 @@ export default {
     //Providers
     FETCH_PROVIDER: "fetchProvider", //매입처 목록 불러오기
     FETCH_PROVIDER_DETAIL: "fetchProviderDetail", //매입처 상세보기
+    FETCH_PROVIDER_SEARCH: "fetchProviderSearch", //매입처 검색
     INSERT_PROVIDER: "insertProvider", //매입처 등록
     UPDATE_PROVIDER: "updateProvider", //매입처 수정
     DELETE_PROVIDER: "deleteProvider", //매입처 삭제
@@ -38,9 +40,9 @@ export default {
     DELETE_GOODS: "deleteGoods", // 물품 삭제
 
     //Order
-    FETCH_ORDER: "fetchData", // 주문 전체 목록
-    FETCH_ORDER_SEARCH: "fetchDataSearch", //주문 검색 목록
-    FETCH_ORDER_DETAIL: "fetchDataDetail",
+    FETCH_ORDER: "fetchOrder", // 주문 전체 목록
+    FETCH_ORDER_SEARCH: "fetchOrderSearch", //주문 검색 목록
+    FETCH_ORDER_DETAIL: "fetchOrderDetail",
     INSERT_ORDER: "insertOrder", //주문 등록
     UPDATE_ORDER: "updateOrder", // 주문 수정
     DELETE_ORDER: "deleteOrder", // 주문 삭제
@@ -58,6 +60,10 @@ export default {
     INSERT_CLIENT: "insertClient", //거래처 등록
     UPDATE_CLIENT: "updateClient", //거래처 수정
     DELETE_CLIENT: "deleteClient", //거래처 삭제
+    FETCH_CLIENT_ITEM: "fetchClientItem",
+    INSERT_CLIENT_ITEM: "insetClientItem",
+    UPDATE_CLIENT_ITEM: "updateClientItem",
+    DELETE_CLIENT_ITEM: "deleteClientItem",
 
     //Deliverer
     FETCH_DELIVERER: "fetchDeliverer", //배송자 목록

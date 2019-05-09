@@ -6,7 +6,7 @@
                 stripped
                 selectable
                 selectedVariant=""
-                :items="clientList"
+                :items="list"
                 :fields="fields"
                 :per-page="perPage"
                 :current-page="currentPage"
@@ -32,8 +32,8 @@
 
 <script>
     export default {
-       name: "ClientTable",
-       props: ["clientList", "rows", "fields"],
+       name: "DelivererTable",
+       props: ["list", "rows", "fields"],
        data() {
            return {
                 currentPage: 1,
@@ -47,7 +47,7 @@
            }
        },
        watch: {
-           clientList(){
+           list() {
                this.isBusy = true;
                setTimeout(() => {
                    this.isBusy = false;

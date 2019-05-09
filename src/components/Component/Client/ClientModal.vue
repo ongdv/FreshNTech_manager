@@ -134,10 +134,18 @@
                 return data;
             },
             delivererList(){
-                return this.$store.state.delivererList;
+                var data = [];
+                this.$store.state.delivererList.forEach(element => {
+                    data.push({text: element.bname, value: element.id})
+                });
+                return data;
             },
-            salesmanList(){
-                return this.$store.state.salesmanList;
+            salesmanList() {
+                var data = [];
+                this.$store.state.employeeList.forEach(element => {
+                    data.push({text: element.name, value: element.id})
+                });
+                return data;
             }
         },
         data() {

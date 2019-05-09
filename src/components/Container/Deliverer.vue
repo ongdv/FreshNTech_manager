@@ -1,50 +1,17 @@
 <template>
     <div style="overflow-y:scroll">
         <div style="width:90%;margin:1% auto;">
-            <div><span class="h2">배송팀 목록</span> </div>
+            <div><span class="h2">배송자 목록</span> <DelivererModal/></div>
             <hr />
-            <table class="table border">
-                <tr>
-                    <th class="w-25 text-center align-middle" style="background: rgba(241,241,241);">
-                        검색
-                    </th>
-                    <td>
-                        <b-input-group>
-                            <b-form-input type="text" v-model="search" placeholder="배송팀명을 입력해주세요." @keydown.enter="searchDeliverer"></b-form-input>
-                            <b-input-group-append>
-                                <b-button variant="outline-secondary" @click="searchDeliverer">검색</b-button>
-                            </b-input-group-append>
-                        </b-input-group>
-                    </td>
-                </tr>
-            </table>
+            <DelivererSearchTask
+                @searchDeliverer="searchDeliverer"
+            />
             <hr>
-            <b-table
-                hover
-                fixed
-                stripped
-                selectable
-                selectedVariant=""
-                :items="delivererList"
+            <DelivererTable
+                :list="delivererList"
                 :fields="fields"
-                :per-page="perPage"
-                :current-page="currentPage"
-                :busy="isBusy"
-                select-mode="single"
-                @row-selected="rowSelected"
-                primary-key="No"
-                class="text-center"
-            >
-                <div slot="table-busy" class="text-center text-secondary my-2">
-                    <b-spinner class="align-middle"></b-spinner>
-                    <strong>Loading...</strong>
-                </div>
-            </b-table>
-            <b-pagination
-                v-model="currentPage"
-                :total-rows="rows"
-                :per-page="perPage"
-                align="center"
+                :rows="rows"
+                @rowSelected="rowSelected"
             />
         </div>
     </div>
@@ -52,8 +19,16 @@
 
 <script>
     import Constant from '../../Constant.js';
+    import DelivererModal from '../Component/Deliverer/DelivererModal.vue';
+    import DelivererSearchTask from '../Component/Deliverer/DelivererSearchTask.vue';
+    import DelivererTable from '../Component/Deliverer/DelivererTable.vue';
     export default {
         name: "Deliverer",
+        components: {
+            DelivererModal,
+            DelivererSearchTask,
+            DelivererTable
+        },
         computed: {
             rows(){
                 return this.$store.state.delivererList.length;
@@ -82,8 +57,9 @@
 
                 this.$store.commit(Constant.FETCH_DELIVERER_SEARCH, this.search);
             },
-            rowSelected() {
-
+            rowSelected(item) {
+                console.log(item);
+                this.$store.dispatch(Constant.FETCH_DELIVERER_DETAIL, item[0].id);
             }
         },
         mounted() {

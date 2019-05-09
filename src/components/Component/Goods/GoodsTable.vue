@@ -6,8 +6,8 @@
                 fixed
                 stripped
                 selectable
-                selectedVariant=""
-                :items="goodsList"
+                selectedVariant="warning"
+                :items="list"
                 :fields="fields"
                 :per-page="perPage"
                 :current-page="currentPage"
@@ -36,7 +36,7 @@
     
     export default {
         name: "GoodsTable",
-        props: ['fields', 'goodsList', 'rows', 'isBusy'],
+        props: ['fields', 'list', 'rows', 'isBusy'],
         data() {
             return {
                 currentPage: 1,
@@ -50,6 +50,14 @@
         },
         mounted() {
             console.log(this.rows);
+        },
+        watch: {
+            list(){
+                this.isBusy = true;
+               setTimeout(() => {
+                   this.isBusy = false;
+               }, 1000);
+            }
         },
     }
 </script>

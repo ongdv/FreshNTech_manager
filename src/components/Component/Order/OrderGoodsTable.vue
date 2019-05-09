@@ -1,17 +1,18 @@
 <template>
     <div>
         <b-table
+                id="order-table"
                 hover
                 fixed
                 stripped
                 selectable
-                selectedVariant=""
-                :items="clientList"
+                selectedVariant="warning"
+                :items="list"
                 :fields="fields"
                 :per-page="perPage"
                 :current-page="currentPage"
                 :busy="isBusy"
-                select-mode="single"
+                select-mode="multi"
                 @row-selected="rowSelected"
                 primary-key="No"
                 class="text-center"
@@ -27,36 +28,36 @@
                 :per-page="perPage"
                 align="center"
             />
+            <hr>
     </div>
 </template>
 
 <script>
+    
     export default {
-       name: "ClientTable",
-       props: ["clientList", "rows", "fields"],
-       data() {
-           return {
+        name: "OrderGoodsTable",
+        props: ['fields', 'list', 'rows', 'isBusy'],
+        data() {
+            return {
                 currentPage: 1,
                 perPage: 10,
-                isBusy: false,
-           }
-       },
-       methods: {
-           rowSelected(items){
-               this.$emit("rowSelected", items);
-           }
-       },
-       watch: {
-           clientList(){
-               this.isBusy = true;
+            }
+        },
+        methods: {
+            rowSelected(items){
+                this.$emit('rowSelected', items);
+            }
+        },
+        mounted() {
+            console.log(this.rows);
+        },
+        watch: {
+            list(){
+                this.isBusy = true;
                setTimeout(() => {
                    this.isBusy = false;
                }, 1000);
-           }
-       },
+            }
+        },
     }
 </script>
-
-<style scoped>
-
-</style>

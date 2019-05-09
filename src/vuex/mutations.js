@@ -53,7 +53,16 @@ export default {
     //getProvider
     [Constant.FETCH_PROVIDER]: (state, payload) => {
         console.log(payload);
+        payload.forEach(item => {
+            item.pmProviderItemVOs === null ? item.count = 0 : item.count = item.pmProviderItemVOs.length;
+        });
         state.providerList = payload;
+    },
+    //searchProvider
+    [Constant.FETCH_PROVIDER_SEARCH]: (state, payload) => {
+        state.providerList = state.providerList.filter(item=>{
+            return item.bname.includes(payload) === true;
+        });
     },
     //getProviderDetail
     [Constant.FETCH_PROVIDER_DETAIL]: (state, payload) => {
@@ -67,6 +76,11 @@ export default {
     // getClient
     [Constant.FETCH_CLIENT]: (state, payload) => {
         console.log(payload);
+        payload.forEach(item => {
+            var d = new Date(item.regDate);
+            item.regDate = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
+            console.log(item.priceRate);
+        });
         state.clientList = payload;
         // payload[0].forEach(item=>{
         //     state.delivererList.push({value: item.delivererId, text: item.delivererManager});
@@ -89,10 +103,18 @@ export default {
         state.client = payload;
         state.layoutView = "ClientDetail";
     },
+    //updateClient
+    [Constant.UPDATE_CLIENT]: (state, payload) => {
+        state.layoutView = "Client";
+        state.Client = {};
+    },
     //deleteClient
     [Constant.DELETE_CLIENT]: (state, payload) => {
         state.layoutView = "Client";
         state.Client = {};
+    },
+    [Constant.FETCH_CLIENT_ITEM]: (state, payload) => {
+        state.clientItemList = payload;
     },
     //Client end
 
@@ -106,6 +128,12 @@ export default {
         state.delivererList = state.delivererList.filter(item=>{
             return item.bName.includes(payload) === true;
         });
+    },
+
+    [Constant.FETCH_DELIVERER_DETAIL]: (state, payload) => {
+        console.log(payload);
+        state.deliverer=payload;
+        state.layoutView="DelivererDetail";
     },
     //Deliverer end
 
@@ -123,7 +151,7 @@ export default {
     //물품 상태 변이
     [Constant.FETCH_GOODS]: (state, payload) => {
         console.log(payload);
-        state.goodsList = payload.goods;
+        state.goodsList = payload;
     },
 
     //getGoods
@@ -137,7 +165,7 @@ export default {
     //물품리스트에서 선택시 물품 상세보기 페이지로 이동
     [Constant.FETCH_GOODS_DETAIL]: (state, payload) => {
         console.log(payload);
-        state.goods = payload;
+        state.goods = payload.itemVO;
         state.layoutView = "GoodsDetail";
     },
 
@@ -203,7 +231,16 @@ export default {
     //주문 상태 변이
     [Constant.FETCH_ORDER]: (state, payload) => {
         console.log(payload);
-        state.orderList = payload.orders;
+        payload.forEach((item) => {
+            var d = new Date(item.orderDate);
+            item.orderDate = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
+        })
+        state.orderList = payload;
+    },
+    [Constant.FETCH_ORDER_DETAIL]: (state, payload) => {
+        console.log(payload);
+        state.order = payload;
+        state.layoutView = "OrderDetail";
     },
     
     //Order end
