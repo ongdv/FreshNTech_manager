@@ -1,4 +1,4 @@
-var BASE_URL = "http://192.168.64.145:8080/app/";
+var BASE_URL = "http://freshntech.cafe24.com/";
 
 export default {
     //Common
@@ -63,5 +63,7 @@ export default {
     //Order
     FETCH_DATA_ORDER: BASE_URL+"orders", //getOrder =>get
     FETCH_DATA_ORDER_DETAIL: BASE_URL+"orders/${id}", //getOrderDetail => get
-    FETCH_DATA_ORDER_SEARCH: BASE_URL+"orders/search", //searchOrder => post
+    FETCH_DATA_ORDER_SEARCH: BASE_URL+"orders/search", //searchOrder => post,
+    INSERT_DATA_ORDER: BASE_URL+"orders",
+    UPDATE_DATA_ORDER: BASE_URL+"orders/${id}"
 }

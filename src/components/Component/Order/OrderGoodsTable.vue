@@ -45,6 +45,7 @@
         },
         methods: {
             rowSelected(items){
+                console.log(items);
                 this.$emit('rowSelected', items);
             }
         },

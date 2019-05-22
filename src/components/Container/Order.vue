@@ -1,7 +1,10 @@
 <template>
     <div style="overflow-y:scroll">
         <div style="width:90%;margin:1% auto;">
-            <div><span class="h2">주문 목록</span> <OrderModal /></div>
+            <div><span class="h2">주문 목록</span>
+            <!-- <OrderModal /> -->
+            <b-button variant="transparent" class="btn-outline-secondary" @click="order">주문 등록</b-button>
+            </div>
             <hr />
             <OrderSearchTask
                 :datePicker="datePicker"
@@ -63,6 +66,9 @@
             },
             searchOrder() {
 
+            },
+            order() {
+                this.$store.commit(Constant.CHANGE_PAGE, {component: "OrderTask"});
             }
         },
         created() {

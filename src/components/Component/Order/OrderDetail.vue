@@ -89,13 +89,14 @@
                 return data;
             },
             goodsList() {
+                console.log(this.$store.state.order.pmOrderItemJoinItemVOs);
                 return this.$store.state.order.pmOrderItemJoinItemVOs;
             },
             rows(){
                 return this.$store.state.order.pmOrderItemJoinItemVOs.length;
             },
             fields() {
-                return this.$store.state.goodsFields;
+                return this.$store.state.orderItemFiled;
             }
         },
         data() {
@@ -110,11 +111,12 @@
                         value: "신용카드",
                     },
                 ],
+                orderList: []
             }
         },
         methods: {
             reqRegister() {
-                this.$store.dispatch(Constant.UPDATE_PROVIDER, this.item);
+                this.$store.dispatch(Constant.UPDATE_ORDER, this.item);
             },
             cancel() {
                 this.$store.commit(Constant.CHANGE_PAGE, {component:"Order"});
@@ -124,8 +126,6 @@
             },
             rowSelected(item) {
                 console.log(item[0]);
-                item[0].tbItem_ID = item[0].id
-                item[0].state = "결제대기"
                 this.orderList.push(item[0]);
             }
         },

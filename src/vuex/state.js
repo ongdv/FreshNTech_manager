@@ -522,5 +522,32 @@ export default {
         remark1: "",
         remark2: "",
         salesman_id: ""
-    }
+    },
+    orderItemFiled: [
+        {
+            key: "tbItemID",
+            label: "ID",
+            sortable: true
+        },
+        {
+            key: "tbItemItemName",
+            label: "상품명",
+            sortable: true
+        },
+        {
+            key: "tbItemItemQTY",
+            label: "수량",
+            sortable: true
+        },
+        {
+            key: "tbItemPrice1",
+            label: "가격",
+            sortable: true
+        },
+        {
+            key: "tbItemState",
+            label: "상태",
+            sortable: true
+        },
+    ],
 }

@@ -7,7 +7,10 @@ import actions from './actions';
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+    modules: {
+        a: actions,
+        b: mutations
+    },
     state,
-    mutations,
-    actions
+    
 })

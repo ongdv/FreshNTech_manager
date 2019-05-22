@@ -115,9 +115,9 @@
                     <tr>
                         <th class="text-center align-middle" style="background: rgba(241,241,241);">이미지</th>
                         <td colspan="3">
-                            <img :src="item.multipartFile" alt="thumbnail">
+                            <img :src="file" alt="thumbnail" width="100">
                             <br>
-                            <input type="file" ref="photofile" name="photo">
+                            <input type="file" ref="photofile" name="photo" @change="changeItem">
                         </td>
                     </tr>
                 </table>
@@ -143,6 +143,7 @@
                 this.$store.state.providerList.forEach(element => {
                     data.push({text: element.bname, value: element.bname});
                 });
+                console.log(data);
                 return data;
             },
             clientName() {
@@ -150,6 +151,7 @@
                 this.$store.state.clientList.forEach(element => {
                     data.push({text: element.bname, value: element.id});
                 });
+                console.log(data);
                 return data;
             }
         },
@@ -188,16 +190,32 @@
                 }
                 if(this.item !== "undefined"){
                     var file = this.$refs.photofile.files[0];
-                    formData.append("multipartFile", file);
+                    formData.append("itemImage", file);
+                    this.item.itemImage = file;
                 }
-                console.log(this.item);
-                this.$store.dispatch(Constant.UPDATE_GOODS, this.item);
+                // console.log(this.item);
+                this.$store.dispatch(Constant.UPDATE_GOODS, {id: this.item.id, item: formData});
             },
             cancel() {
                 this.$store.commit(Constant.CHANGE_PAGE, {component: "goods"})
             },
             deleteGoods() {
                 this.$store.dispatch(Constant.DELETE_GOODS, this.item);
+            },
+            changeItem(e){
+                
+                // var file = this.$refs.photofile.files[0];
+                var file = e.target.files || e.dataTransfer.files;
+                this.createImage(file[0]);
+            },
+            createImage(file){
+                var image = new Image();
+                var reader = new FileReader();
+                var vm = this;
+                reader.onload = (e) => {
+                    this.file = e.target.result;
+                }
+                reader.readAsDataURL(file);
             }
         },
         mounted() {
