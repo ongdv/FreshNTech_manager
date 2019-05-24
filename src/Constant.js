@@ -5,6 +5,7 @@ export default {
     CHANGE_PAGE: "changePage", // 페이지 전환
     REQUEST_SUCCESS: "requestSuccess",
     REQUEST_FAILURE: "requestFailure",
+    ERROR: "error",
     
     //Employee
     FETCH_EMPLOYEE: "fetchEmployee", //직원 목록 불러오기

@@ -11,7 +11,6 @@
             <GoodsTable 
                 :fields="fields"
                 :list="goodsList"
-                :busy="isBusy"
                 :rows="rows"
                 :select="select"
                 v-on:rowSelected="rowSelected"

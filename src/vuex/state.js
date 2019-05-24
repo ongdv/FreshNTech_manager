@@ -2,6 +2,7 @@ export default {
     currentView: "Auth", //기본 레이아웃
     user: {}, //세션
     layoutView: "Main", //레이아웃
+    error: {},
     list: [ //사이드바 메뉴 리스트
         {
             name: "주문 관리",

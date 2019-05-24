@@ -1,4 +1,5 @@
-var BASE_URL = "http://freshntech.cafe24.com/";
+// var BASE_URL = "http://freshntech.cafe24.com/";
+var BASE_URL = "http://192.168.64.145:8080/app/";
 
 export default {
     //Common
@@ -6,7 +7,7 @@ export default {
 
     //Category
     FETCH_DATA_CATEGORY: BASE_URL+"categories", //getCategory => get
-    INSERT_DATA_CATEGORY: BASE_URL+"cateories", //insertCategory => post
+    INSERT_DATA_CATEGORY: BASE_URL+"categories", //insertCategory => post
     UPDATE_DATA_CATEGORY: BASE_URL+"categories", //updateCategory => put
     DELETE_DATA_CATEGORY: BASE_URL+"categories", //deleteCategory => delete
 
@@ -16,9 +17,10 @@ export default {
     INSERT_DATA_CLIENT: BASE_URL+"customers", //insertClient => post
     UPDATE_DATA_CLIENT: BASE_URL+"customers/${id}",//updateClient => put
     DELETE_DATA_CLIENT: BASE_URL+"customers/${id}", //deleteClient => delete
+
     //ClientItem
-    FETCH_DATA_CLIENT_ITEM: BASE_URL+"pmCustomerItems/${id}",
-    INSERT_DATA_CLIENT_ITEM: BASE_URL+"pmCustomerItems",
+    FETCH_DATA_CLIENT_ITEM: BASE_URL+"pmCustomerItems/${id}", //getClientItem
+    INSERT_DATA_CLIENT_ITEM: BASE_URL+"pmCustomerItems", //insertClientItem
     UPDATE_DATA_CLIENT_ITEM: BASE_URL+"pmCustomerItems/${id}",
     DELETE_DATA_CLIENT_ITEM: BASE_URL+"pmCustomerItems/${id}",
 
@@ -64,6 +66,6 @@ export default {
     FETCH_DATA_ORDER: BASE_URL+"orders", //getOrder =>get
     FETCH_DATA_ORDER_DETAIL: BASE_URL+"orders/${id}", //getOrderDetail => get
     FETCH_DATA_ORDER_SEARCH: BASE_URL+"orders/search", //searchOrder => post,
-    INSERT_DATA_ORDER: BASE_URL+"orders",
-    UPDATE_DATA_ORDER: BASE_URL+"orders/${id}"
+    INSERT_DATA_ORDER: BASE_URL+"orders", //post
+    UPDATE_DATA_ORDER: BASE_URL+"orders/${id}" //put
 }

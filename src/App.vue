@@ -8,10 +8,11 @@
 import Auth from "./components/Container/Auth";
 import Layout from './components/Container/Layout';
 import Constant from './Constant';
+import Error from './components/Container/Error';
 export default {
   name: 'App',
   components: {
-    Auth, Layout
+    Auth, Layout, Error
   },
   computed:{
     currentView () {
@@ -27,7 +28,7 @@ export default {
     this.$store.dispatch(Constant.FETCH_DELIVERER);
     this.$store.dispatch(Constant.FETCH_PROVIDER);
     this.$store.dispatch(Constant.FETCH_EMPLOYEE);
-    // console.log(this.$store.state.clientName);
+    console.log(this.$store.state.clientName);
   },
 }
 </script>

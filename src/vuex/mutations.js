@@ -16,6 +16,10 @@ export default {
         state.currentView = "Auth";
         state.layoutView = "Main";
     },
+    [Constant.ERROR]: (state, payload) => {
+        state.currentView = "Error";
+        state.err = payload;
+    },
 
     // //직원, 거래처 목록 입력
     // [Constant.FETCH_READY]: (state, payload) => {

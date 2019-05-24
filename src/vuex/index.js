@@ -1,16 +1,19 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import state from './state';
-import mutations from './mutations';
 import actions from './actions';
+import mutations from './mutations';
+import state from './state';
+// import {CommonStore} from './Moudles/Common/CommonStore';
+// import {EmployeeStore} from './Moudles/Employee/EmployeeStore';
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-    modules: {
-        a: actions,
-        b: mutations
-    },
-    state,
-    
+    actions,
+    mutations,
+    state,  
+    // modules: {
+    //     CommonStore,
+    //     EmployeeStore
+    // }
 })

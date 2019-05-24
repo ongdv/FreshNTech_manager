@@ -36,11 +36,12 @@
     
     export default {
         name: "GoodsTable",
-        props: ['fields', 'list', 'rows', 'isBusy'],
+        props: ['fields', 'list', 'rows'],
         data() {
             return {
                 currentPage: 1,
                 perPage: 10,
+                isBusy: false
             }
         },
         methods: {

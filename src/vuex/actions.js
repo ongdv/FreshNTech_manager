@@ -38,7 +38,7 @@ export default {
             store.commit(Constant.FETCH_EMPLOYEE_DETAIL, res.data);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     //insertEmployee
@@ -47,10 +47,10 @@ export default {
         axios.post(APIConstant.INSERT_DATA_EMPLOYEE, payload)
         .then(res=>{
             console.log(res.data);
-            store.commit(Constant.CHANGE_PAGE, "Employee");
+            store.commit(Constant.CHANGE_PAGE, {component:"Employee"});
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     //updateEmployee
@@ -62,7 +62,7 @@ export default {
             store.dispatch(Constant.FETCH_EMPLOYEE_DETAIL, payload.id);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     //deleteEmployee
@@ -70,11 +70,11 @@ export default {
         console.log(Constant.DELETE_EMPLOYEE);
         axios.delete(APIConstant.DELETE_DATA_EMPLOYEE.replace("${id}", payload))
         .then(res=>{
-            console.log(res.datta);
-            store.commit(Constant.CHANGE_PAGE, "Employee");
+            console.log(res.data);
+            store.commit(Constant.CHANGE_PAGE, {component: "Employee"});
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     //Employee end
@@ -89,7 +89,7 @@ export default {
             store.commit(Constant.FETCH_CLIENT, res.data);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     //getClientDetail
@@ -101,7 +101,7 @@ export default {
             store.commit(Constant.FETCH_CLIENT_DETAIL, res.data);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     //deleteClient
@@ -113,7 +113,7 @@ export default {
             store.commit(Constant.FETCH_CLIENT);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     //insertClient
@@ -126,7 +126,7 @@ export default {
             store.commit(Constant.FETCH_CLIENT_SEARCH, payload.bName);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     //updateClient
@@ -138,7 +138,7 @@ export default {
             store.commit(Constant.UPDATE_CLIENT);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     [Constant.FETCH_CLIENT_ITEM]: (store, payload) => {
@@ -149,7 +149,7 @@ export default {
             store.commit(Constant.FETCH_CLIENT_ITEM, res.data);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     [Constant.INSERT_CLIENT_ITEM]: (store, payload) => {
@@ -161,7 +161,7 @@ export default {
             store.commit(Constant.CHANGE_PAGE, {component: "Client"})
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     [Constant.DELETE_CLIENT_ITEM]: (store, payload) => {
@@ -172,7 +172,7 @@ export default {
             store.commit(Constant.CHANGE_PAGE, {component: "Client"})
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     [Constant.UPDATE_CLIENT_ITEM]: (store, payload) => {
@@ -182,7 +182,7 @@ export default {
             console.log(res.data);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     //Client end
@@ -197,7 +197,7 @@ export default {
             store.commit(Constant.FETCH_DELIVERER, res.data);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
 
@@ -210,7 +210,7 @@ export default {
             store.commit(Constant.FETCH_DELIVERER_DETAIL, res.data);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
 
@@ -222,7 +222,7 @@ export default {
             console.log(res.data);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
 
@@ -235,7 +235,7 @@ export default {
             store.commit(Constant.CHANGE_PAGE, {component: "Deliverer"});
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
 
     },
@@ -244,7 +244,14 @@ export default {
     [Constant.DELETE_DELIVERER]: (store, payload) => {
         console.log(Constant.DELETE_DELIVERER);
         console.log(payload);
-
+        axios.delete(APIConstant.DELETE_DATA_DELIVERER.replace("${id}", payload))
+        .then(res=>{
+            console.log(res.data);
+            store.commit(Constant.CHANGE_PAGE, {component: "Deliverer"});
+        })
+        .catch(err=>{
+            store.commit(Constant.ERROR, err);
+        })
     },
 
     //Deliverer end
@@ -259,17 +266,18 @@ export default {
             store.commit(Constant.FETCH_CATEGORY, res.data);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     //updateCategory
     [Constant.UPDATE_CATEGORY]: (store, payload) => {
         console.log(Constant.UPDATE_CATEGORY);
-        console.log("Not implement");
+        store.commit(Constant.ERROR, "Not Implement");
     },
     //deleteCategory
     [Constant.DELETE_CATEGORY]: (store, payload) => {
         console.log(Constant.DELETE_CATEGORY);
+        store.commit(Constant.ERROR, "Not Implement");
         console.log("Not implement");
     },
     //category end
@@ -284,7 +292,7 @@ export default {
             store.commit(Constant.FETCH_PROVIDER, res.data);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
 
@@ -297,7 +305,7 @@ export default {
             store.commit(Constant.FETCH_PROVIDER_DETAIL, res.data);
         })
         .catch(err=>{
-
+            store.commit(Constant.ERROR, err);
         })
     },
 
@@ -309,7 +317,7 @@ export default {
             store.dispatch(Constant.FETCH_PROVIDER);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
 
@@ -322,7 +330,7 @@ export default {
             store.dispatch(Constant.FETCH_PROVIDER_DETAIL, payload.id);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
 
@@ -335,7 +343,7 @@ export default {
             store.commit(Constant.CHANGE_PAGE, {component: "Provider"})
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     //provider end
@@ -350,7 +358,7 @@ export default {
             store.commit(Constant.FETCH_GOODS, res.data);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     // searchGoods
@@ -363,20 +371,19 @@ export default {
             store.commit(Constant.FETCH_GOODS_SEARCH, {goods: res.data});
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     // insertGoods
     [Constant.INSERT_GOODS]: (store, payload) => {
         console.log(Constant.INSERT_GOODS);
         console.log(payload);
-        axios.post(APIConstant.INSERT_DATA_GOODS, payload.formData)
+        axios.post(APIConstant.INSERT_DATA_GOODS, payload.item)
         .then(()=>{
             store.dispatch(Constant.FETCH_GOODS_SEARCH, payload.item.itemName);
         })
         .catch(err=>{
-            console.log(err);
-            store.dispatch(Constant.FETCH_GOODS_SEARCH, payload.item.itemName);
+            store.commit(Constant.ERROR, err);
         })
     },
     // getGoodsDetail
@@ -388,7 +395,7 @@ export default {
             store.commit(Constant.FETCH_GOODS_DETAIL, res.data);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     // updateGoods
@@ -399,7 +406,7 @@ export default {
             store.commit(Constant.FETCH_GOODS_SEARCH, {id: payload.id});
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
         
     },
@@ -413,7 +420,7 @@ export default {
             store.commit(Constant.FETCH_GOODS);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
         // store.commit(Constant.FETCH_GOODS_SEARCH, {id: payload.id});
     },
@@ -429,7 +436,7 @@ export default {
             store.commit(Constant.FETCH_ORDER, res.data);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     [Constant.FETCH_ORDER_DETAIL]: (store, payload) => {
@@ -440,7 +447,7 @@ export default {
             store.commit(Constant.FETCH_ORDER_DETAIL, res.data);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     // insertOrder
@@ -453,16 +460,17 @@ export default {
             console.log(res.data);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     // updateOrder
     [Constant.UPDATE_ORDER]: (store, payload) => {
         console.log(Constant.UPDATE_ORDER);
+        store.commit(Constant.ERROR, "Not Implement");
     },
     // deleteOrder
     [Constant.DELETE_ORDER]: (store, payload) => {
-        console.log(Constant.DELETE_ORDER);
+        store.commit(Constant.ERROR, "Not Implement");
     },
     //Order end
 
@@ -476,7 +484,7 @@ export default {
             store.commit(Constant.FETCH_PURCHASE, res.data);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     //getPurchaseDetail
@@ -488,7 +496,7 @@ export default {
             store.commit(Constant.FETCH_PURCHASE_DETAIL, res.data);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     //searchPurchase
@@ -501,7 +509,7 @@ export default {
                     console.log(res.data);
                 })
                 .catch(err=>{
-                    console.log(err);
+                    store.commit(Constant.ERROR, err);
                 })
                 break;
             case "name":
@@ -510,7 +518,7 @@ export default {
                     console.log(res.data);
                 })
                 .catch(err=>{
-                    console.log(err);
+                    store.commit(Constant.ERROR, err);
                 })
                 break;
         }
@@ -523,7 +531,7 @@ export default {
             console.log(res.data);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     //updatePurchase
@@ -534,7 +542,7 @@ export default {
             console.log(res.data);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     },
     //deletePurchase
@@ -545,7 +553,7 @@ export default {
             console.log(res.data);
         })
         .catch(err=>{
-            console.log(err);
+            store.commit(Constant.ERROR, err);
         })
     }
     //Purchase end
