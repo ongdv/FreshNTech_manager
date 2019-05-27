@@ -1,5 +1,5 @@
-// var BASE_URL = "http://freshntech.cafe24.com/";
-var BASE_URL = "http://192.168.64.145:8080/app/";
+var BASE_URL = "http://freshntech.cafe24.com/";
+// var BASE_URL = "http://192.168.64.145:8080/app/";
 
 export default {
     //Common
