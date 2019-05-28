@@ -34,8 +34,12 @@ export default {
         console.log(Constant.FETCH_EMPLOYEE_DETAIL);
         axios.get(APIConstant.FETCH_DATA_EMPLOYEE_DETAIL.replace("${id}", payload))
         .then(res=>{
-            console.log(res.data);
-            store.commit(Constant.FETCH_EMPLOYEE_DETAIL, res.data);
+            if(res.status === 200){
+                store.commit(Constant.FETCH_EMPLOYEE_DETAIL, res.data);
+            }else{
+                store.commit(Constant.ERROR, res);
+            }
+            
         })
         .catch(err=>{
             store.commit(Constant.ERROR, err);
@@ -46,8 +50,12 @@ export default {
         console.log(Constant.INSERT_EMPLOYEE);
         axios.post(APIConstant.INSERT_DATA_EMPLOYEE, payload)
         .then(res=>{
-            console.log(res.data);
-            store.commit(Constant.CHANGE_PAGE, {component:"Employee"});
+            if(res.status === 200){
+                store.dispatch(Constant.FETCH_EMPLOYEE);
+                store.commit(Constant.FETCH_EMPLOYEE_SEARCH, payload.name);
+            }else{
+                store.commit(Constant.ERROR, res);
+            }
         })
         .catch(err=>{
             store.commit(Constant.ERROR, err);
@@ -58,8 +66,11 @@ export default {
         console.log(Constant.UPDATE_EMPLOYEE);
         axios.put(APIConstant.UPDATE_DATA_EMPLOYEE.replace("${id}", payload.id), payload)
         .then(res=>{
-            console.log(res.data);
-            store.dispatch(Constant.FETCH_EMPLOYEE_DETAIL, payload.id);
+            if(res.status === 200){
+                store.dispatch(Constant.FETCH_EMPLOYEE_DETAIL, payload.id);
+            }else{
+                store.commit(Constant.ERROR, res);
+            }
         })
         .catch(err=>{
             store.commit(Constant.ERROR, err);
@@ -70,8 +81,11 @@ export default {
         console.log(Constant.DELETE_EMPLOYEE);
         axios.delete(APIConstant.DELETE_DATA_EMPLOYEE.replace("${id}", payload))
         .then(res=>{
-            console.log(res.data);
-            store.commit(Constant.CHANGE_PAGE, {component: "Employee"});
+            if(res.status === 200){
+                store.commit(Constant.CHANGE_PAGE, {component: "Employee"});
+            }else{
+                store.commit(Constant.ERROR, res);
+            }
         })
         .catch(err=>{
             store.commit(Constant.ERROR, err);
@@ -288,8 +302,11 @@ export default {
         console.log(Constant.FETCH_PROVIDER);
         axios.get(APIConstant.FETCH_DATA_PROVIDER)
         .then(res=>{
-            console.log(res.data);
-            store.commit(Constant.FETCH_PROVIDER, res.data);
+            if(res.status === 200){
+                store.commit(Constant.FETCH_PROVIDER, res.data);
+            }else{
+                store.commit(Constant.ERROR, res);    
+            }
         })
         .catch(err=>{
             store.commit(Constant.ERROR, err);
@@ -301,8 +318,11 @@ export default {
         console.log(Constant.FETCH_PROVIDER_DETAIL);
         axios.get(APIConstant.FETCH_DATA_PROVIDER_DETAIL.replace("${id}", payload))
         .then(res=>{
-            console.log(res.data);
-            store.commit(Constant.FETCH_PROVIDER_DETAIL, res.data);
+            if(res.status === 200) {
+                store.commit(Constant.FETCH_PROVIDER_DETAIL, res.data);
+            }else{
+                store.commit(Constant.ERROR, res);
+            }
         })
         .catch(err=>{
             store.commit(Constant.ERROR, err);

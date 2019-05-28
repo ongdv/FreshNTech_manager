@@ -54,7 +54,6 @@
                     this.$store.dispatch(Constant.FETCH_DELIVERER);
                     return;
                 }
-
                 this.$store.commit(Constant.FETCH_DELIVERER_SEARCH, this.search);
             },
             rowSelected(item) {

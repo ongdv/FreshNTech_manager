@@ -51,6 +51,13 @@ export default {
         state.employee = payload;
         state.layoutView = "EmployeeDetail";
     },
+    //searchEmployee
+    [Constant.FETCH_EMPLOYEE_SEARCH] : (state, payload) => {
+        console.log(payload);
+        state.employeeList = state.employeeList.filter(item => {
+            return item.name.includes(payload) === true;
+        });
+    },
     //Employee end
 
     //Provider start

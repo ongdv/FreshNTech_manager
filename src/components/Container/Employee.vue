@@ -48,10 +48,15 @@
         methods: {
             searchEmployee(search) {
                 this.isBusy = true;
+                if(search.length === 0){
+                    this.$store.dispatch(Constant.FETCH_EMPLOYEE, search);
+                }else{
+                    this.$store.commit(Constant.FETCH_EMPLOYEE_SEARCH, search)
+                }
                 setTimeout(() => {
                     this.isBusy = false;    
                 }, 2000);
-                this.$store.dispatch(Constant.FETCH_EMPLOYEE, search);
+                // 
             },
             rowSelected(items) {
                 this.$store.dispatch(Constant.FETCH_EMPLOYEE_DETAIL, items[0].id);
