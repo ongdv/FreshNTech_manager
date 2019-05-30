@@ -197,8 +197,8 @@
                 }
                 if(this.item !== "undefined"){
                     var file = this.$refs.photofile.files[0];
-                    this.item.multipartFile = file;
-                    formData.append("multipartFile", file);
+                    this.item.itemImage = file;
+                    formData.append("itemImage", file);
                 }
                 // console.log(this.item);
                 // console.log(this.$store.state.item);

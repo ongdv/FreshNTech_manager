@@ -168,7 +168,8 @@
                 this.$store.commit(Constant.CHANGE_PAGE, {component: "client"})
             },
             deleteGoods() {
-                this.$store.dispatch(Constant.DELETE_CLIENT, this.client.id);
+                console.log(this.client);
+                this.$store.dispatch(Constant.DELETE_CLIENT, this.item.id);
             },
             rowSelected(item) {
                 console.log(item);

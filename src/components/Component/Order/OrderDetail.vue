@@ -8,10 +8,18 @@
                         <th class="text-center align-middle" style="background: rgba(241,241,241);">
                             거래처 선택
                         </th>
-                        <td colspan="3">
+                        <td>
                             <b-form-select v-model="item.tbCustomer_ID" :options="clientList"></b-form-select>
                             <!-- <b-form-input v-model="item.bname" placeholder="매입처 이름"></b-form-input> -->
                         </td>
+                        <th class="text-center align-middle" style="background: rgba(241,241,241);">
+                            배송 상태
+                        </th>
+                        <td>
+                            <b-form-select v-model="item.orderState" :options="orderState"></b-form-select>
+                            <!-- <b-form-input v-model="item.bname" placeholder="매입처 이름"></b-form-input> -->
+                        </td>
+                        
                     </tr>
                     <tr>
                         <th class="text-center align-middle" style="background: rgba(241,241,241);">
@@ -51,13 +59,67 @@
                         </td>
                     </tr>
                 </table>
-                <OrderGoodsTable 
+                <!-- <OrderGoodsTable 
                     :list="goodsList"
                     :fields="fields"
                     :rows="rows"
                     :selcet="'multi'"
                     @rowSelected="rowSelected"
-                />
+                /> -->
+                <b-list-group>
+                    <b-list-group-item>주문 상품 목록<order-modal @rowSelected="rowSelected"/>
+                    </b-list-group-item>
+                    <template v-for="(item, index) in orderList"> 
+                        <b-list-group-item>
+                            <b-media tag="li">
+                                <table class="table w-100 border-0 text-center">
+                                    <!-- {{item}} -->
+                                    <tr class="w-100">
+                                        <td class="w-25">
+                                            <b-img slot="aside" blank blank-color="#abc" width="64" alt="placeholder"></b-img>
+                                        </td>
+                                        <td class="w-25">
+                                            {{item.itemName}}
+                                        </td>
+                                        <td class="w-25">
+                                            {{nwc(item.price)}}
+                                        </td>
+                                        <td class="w-25">
+                                                <b-button-group>
+                                                <b-button @click="decrement(item.id)">-</b-button>
+                                                <b-button>{{nwc(item.qty)}}</b-button>
+                                                <b-button @click="increment(item.id)">+</b-button>
+                                                </b-button-group>
+                                        </td>
+                                        <td class="w-25">
+                                            {{nwc(item.amount)}}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </b-media>
+                        </b-list-group-item>      
+                    </template>
+                </b-list-group>
+                <table class="table">
+                    <tr>
+                        <th class="text-center align-middle" style="background: rgba(241,241,241);">
+                            총 갯수
+                        </th>
+                        <td colspan="3">
+                            <!-- <b-form-select v-model="item.tbCustomer_ID" :options="clientList"></b-form-select> -->
+                            <b-form-input v-model="qty"></b-form-input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" style="background: rgba(241,241,241);">
+                            총액
+                        </th>
+                        <td colspan="3">
+                            <!-- <b-form-select v-model="item.tbCustomer_ID" :options="clientList"></b-form-select> -->
+                            <b-form-input v-model="total"></b-form-input>
+                        </td>
+                    </tr>
+                </table>
                 <div class="text-center">
                     <b-button class="btn btn-success w-25" @click="reqRegister">수정</b-button>
                     <b-button class="btn btn-warning w-25" @click="cancel">목록으로</b-button>
@@ -68,13 +130,16 @@
 <script>
     import Constant from '../../../Constant.js';
     import OrderGoodsTable from './OrderGoodsTable.vue';
+    import OrderModal from './OrderModal';
     export default {
         name: "OrderDetail",
         components: {
-            OrderGoodsTable
+            OrderGoodsTable,
+            OrderModal
         },
         computed: {
             item() {
+                console.log("id"+this.$store.state.order);
                 return this.$store.state.order;
             },
             list() {
@@ -88,15 +153,35 @@
                 });
                 return data;
             },
-            goodsList() {
-                console.log(this.$store.state.order.pmOrderItemJoinItemVOs);
-                return this.$store.state.order.pmOrderItemJoinItemVOs;
+            orderList() {
+                console.log(this.$store.state.order.pmOrderItamVOs);
+                return this.$store.state.order.pmOrderItamVOs;
             },
             rows(){
-                return this.$store.state.order.pmOrderItemJoinItemVOs.length;
+                return this.$store.state.order.pmOrderItamVOs.length;
             },
             fields() {
                 return this.$store.state.orderItemFiled;
+            },
+            total() {
+                if(this.orderList.length === 0){
+                    return 0;
+                }
+                var total =0
+                this.orderList.forEach(item => {
+                    total += parseInt(item.amount);
+                })
+                return this.nwc(total);
+            },
+            qty() {
+                var total =0
+                if(this.orderList.length === 0){
+                    return 0;
+                }
+                this.orderList.forEach(item => {
+                    total += parseInt(item.qty);
+                })
+                return total;
             }
         },
         data() {
@@ -111,22 +196,58 @@
                         value: "신용카드",
                     },
                 ],
-                orderList: []
+                cnt: 0,
+                orderState: [
+                    {
+                        text: "결제대기",
+                        value: "결제대기"
+                    },
+                    {
+                        text: "결제완료",
+                        value: "결제완료"
+                    },
+                    {
+                        text: "배송중",
+                        value: "배송중"
+                    },
+                    {
+                        text: "배송완료",
+                        value: "배송완료"
+                    },
+                ]
             }
         },
         methods: {
             reqRegister() {
-                this.$store.dispatch(Constant.UPDATE_ORDER, this.item);
+                var postData = this.item;
+                postData.pmOrderItamVOs = this.orderList;
+                console.log(this.orderList);
+                postData.amount = this.total;
+                postData.payment = this.total;
+                postData.itemCount = this.qty;
+                postData.pmOrderItemJoinItemVOs = null;
+                this.$store.dispatch(Constant.UPDATE_ORDER, postData);
             },
             cancel() {
                 this.$store.commit(Constant.CHANGE_PAGE, {component:"Order"});
             },
+            nwc(x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            },
             deleteProvider() {
-                this.$store.dispatch(Constant.DELETE_PROVIDER, this.item.id);
+                console.log(this.item.id);
+                this.$store.dispatch(Constant.DELETE_ORDER, this.item.id);
             },
             rowSelected(item) {
-                console.log(item[0]);
-                this.orderList.push(item[0]);
+                item[this.cnt].tbitem_ID = item[this.cnt].id;
+                item[this.cnt].tbOrderItemQTY = 1;
+                item[this.cnt].state = "결재대기";
+                item[this.cnt].qty = 1;
+                item[this.cnt].price = item[this.cnt].price3;
+                item[this.cnt].amount = item[this.cnt].price * item[this.cnt].qty;
+                
+                this.orderList.push(item[this.cnt]);
+                this.cnt++;
             }
         },
     }

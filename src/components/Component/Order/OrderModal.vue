@@ -13,26 +13,7 @@
                     :selcet="'multi'"
                     @rowSelected="rowSelected"
                 />
-                <table class="table">
-                    <tr>
-                        <th class="text-center align-middle" style="background: rgba(241,241,241);">
-                            총 갯수
-                        </th>
-                        <td colspan="3">
-                            <!-- <b-form-select v-model="item.tbCustomer_ID" :options="clientList"></b-form-select> -->
-                            <b-form-input v-model="qty"></b-form-input>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="text-center align-middle" style="background: rgba(241,241,241);">
-                            총액
-                        </th>
-                        <td colspan="3">
-                            <!-- <b-form-select v-model="item.tbCustomer_ID" :options="clientList"></b-form-select> -->
-                            <b-form-input v-model="total"></b-form-input>
-                        </td>
-                    </tr>
-                </table>
+                
                 <div class="text-center">
                     <b-button class="btn btn-success w-25" @click="reqRegister">등록</b-button>
                     <b-button class="btn btn-warning w-25" @click="cancel">취소</b-button>
@@ -105,11 +86,12 @@
         },
         methods: {
             reqRegister(){
+                // this.store.dispatch(Constant.INSERT_ORDER, this.orderList);
                 this.$refs['modal-1'].hide();
             },
             cancel() {
                 this.$refs['modal-1'].hide()
-                Object.assign(this.item, this.$store.state.providerItem);
+                Object.assign(this.item, this.$store.state.orderList);
             },
             rowSelected(item) {
                 this.$emit('rowSelected', item);

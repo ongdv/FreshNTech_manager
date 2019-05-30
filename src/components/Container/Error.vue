@@ -20,7 +20,7 @@
         name: "Error",
         computed: {
             error() {
-                return this.$store.state.error;
+                return this.$store.state.err;
             }
         },
         methods: {

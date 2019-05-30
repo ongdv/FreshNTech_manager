@@ -52,7 +52,7 @@ export default {
         state.layoutView = "EmployeeDetail";
     },
     //searchEmployee
-    [Constant.FETCH_EMPLOYEE_SEARCH] : (state, payload) => {
+    [Constant.FETCH_EMPLOYEE_SEARCH]: (state, payload) => {
         console.log(payload);
         state.employeeList = state.employeeList.filter(item => {
             return item.name.includes(payload) === true;
@@ -71,7 +71,7 @@ export default {
     },
     //searchProvider
     [Constant.FETCH_PROVIDER_SEARCH]: (state, payload) => {
-        state.providerList = state.providerList.filter(item=>{
+        state.providerList = state.providerList.filter(item => {
             return item.bname.includes(payload) === true;
         });
     },
@@ -81,7 +81,7 @@ export default {
         state.provider = payload;
         state.layoutView = "ProviderDetail";
     },
-    
+
     //Provider end
     //Client start
     // getClient
@@ -104,7 +104,7 @@ export default {
     //searchClient
     [Constant.FETCH_CLIENT_SEARCH]: (state, payload) => {
         console.log(payload);
-        state.clientList = state.clientList.filter(item=>{
+        state.clientList = state.clientList.filter(item => {
             return item.bName.includes(payload) === true;
         })
     },
@@ -136,15 +136,15 @@ export default {
     },
 
     [Constant.FETCH_DELIVERER_SEARCH]: (state, payload) => {
-        state.delivererList = state.delivererList.filter(item=>{
+        state.delivererList = state.delivererList.filter(item => {
             return item.bName.includes(payload) === true;
         });
     },
 
     [Constant.FETCH_DELIVERER_DETAIL]: (state, payload) => {
         console.log(payload);
-        state.deliverer=payload;
-        state.layoutView="DelivererDetail";
+        state.deliverer = payload;
+        state.layoutView = "DelivererDetail";
     },
     //Deliverer end
 
@@ -251,8 +251,35 @@ export default {
     [Constant.FETCH_ORDER_DETAIL]: (state, payload) => {
         console.log(payload);
         state.order = payload;
+        if(state.order.pmOrderItemJoinItemVOs === null){
+            state.order.pmOrderItamVOs = Array();
+        }else{
+            state.order.pmOrderItamVOs = Array();
+            state.order.pmOrderItemJoinItemVOs.forEach(item=>{
+                console.log(item);
+                if(item.tbOrderItemQTY == 0){
+                    item.qty = 1; 
+                }else{
+                    item.qty = item.tbOrderItemQTY;
+                    
+                    item.id = item.tbOrderItemID;
+                    item.tbitem_ID = item.tbItemID;
+                    item.itemName = item.tbItemItemName;
+                    item.price = item.tbItemPrice3;
+                    item.amount = item.price*item.qty;
+                    
+                    state.order.pmOrderItamVOs.push(item);
+                }
+            })
+        }
         state.layoutView = "OrderDetail";
     },
-    
+    [Constant.UPDATE_ITEM_QTY]: (state, payload) => {
+        console.log(Constant.UPDATE_ITEM_QTY);
+        console.log(payload);
+        state.order.pmOrderItamVOs.forEach(item=>{
+            console.log(item);
+        })
+    }
     //Order end
 }

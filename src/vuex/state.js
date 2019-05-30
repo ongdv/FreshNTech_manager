@@ -20,10 +20,10 @@ export default {
                     name: "상품 목록",
                     component: "Goods"
                 },
-                {
-                    name: "카테고리 관리",
-                    component: "Category"
-                }
+                // {
+                //     name: "카테고리 관리",
+                //     component: "Category"
+                // }
             ]
         },
         {

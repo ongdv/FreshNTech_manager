@@ -47,6 +47,7 @@ export default {
     INSERT_ORDER: "insertOrder", //주문 등록
     UPDATE_ORDER: "updateOrder", // 주문 수정
     DELETE_ORDER: "deleteOrder", // 주문 삭제
+    UPDATE_ITEM_QTY: "updateItemQty",
 
     //Category
     FETCH_CATEGORY: "fetchCategory", //카테고리 목록

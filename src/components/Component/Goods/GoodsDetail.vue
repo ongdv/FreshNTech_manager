@@ -188,12 +188,17 @@
                     // console.log(key+", "+element);
                     formData.append(key.toString(), element);
                 }
+            
                 if(this.item !== "undefined"){
                     var file = this.$refs.photofile.files[0];
                     formData.append("itemImage", file);
                     this.item.itemImage = file;
+                }else{
+                    formData.append("itemImage", null);
+                    this.item.itemImage = null;
                 }
-                // console.log(this.item);
+                
+                console.log(this.item);
                 this.$store.dispatch(Constant.UPDATE_GOODS, {id: this.item.id, item: formData});
             },
             cancel() {

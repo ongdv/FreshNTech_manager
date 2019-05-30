@@ -56,7 +56,7 @@ export default {
     DELETE_DATA_EMPLOYEE: BASE_URL+"members/${id}", //deleteEmployee => delete
 
     //Goods
-    FETCH_DATA_GOODS: BASE_URL+"items", //getGoodsList => get
+    FETCH_DATA_GOODS: BASE_URL+"items?offset=0&limit=999", //getGoodsList => get
     FETCH_DATA_GOODS_DETAIL: BASE_URL+"items/${id}", //getGoods => get
     INSERT_DATA_GOODS: BASE_URL+"items", //insertGoods => post
     UPDATE_DATA_GOODS: BASE_URL+"items/${id}", //updateGoods => post
@@ -67,5 +67,6 @@ export default {
     FETCH_DATA_ORDER_DETAIL: BASE_URL+"orders/${id}", //getOrderDetail => get
     FETCH_DATA_ORDER_SEARCH: BASE_URL+"orders/search", //searchOrder => post,
     INSERT_DATA_ORDER: BASE_URL+"orders", //post
-    UPDATE_DATA_ORDER: BASE_URL+"orders/${id}" //put
+    UPDATE_DATA_ORDER: BASE_URL+"orders/${id}", //put
+    DELETE_DATA_ORDER: BASE_URL+"orders/${id}" //delete
 }

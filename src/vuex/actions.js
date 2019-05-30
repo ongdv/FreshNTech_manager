@@ -1,6 +1,7 @@
 import Constant from '../Constant';
 import APIConstant from '../APIConstant';
 import axios from 'axios';
+import { ESRCH } from 'constants';
 
 export default {
     //common start
@@ -121,10 +122,10 @@ export default {
     //deleteClient
     [Constant.DELETE_CLIENT]: (store, payload) => {
         console.log(Constant.DELETE_CLIENT);
+        console.log(payload);
         axios.delete(APIConstant.DELETE_DATA_CLIENT.replace("${id}", payload))
         .then(res=>{
-            store.commit(Constant.DELETE_CLIENT);
-            store.commit(Constant.FETCH_CLIENT);
+            store.commit(Constant.CHANGE_PAGE, {component: "Client"});
         })
         .catch(err=>{
             store.commit(Constant.ERROR, err);
@@ -137,7 +138,6 @@ export default {
         .then(res=>{
             console.log(res.data);
             store.commit(Constant.FETCH_CLIENT);
-            store.commit(Constant.FETCH_CLIENT_SEARCH, payload.bName);
         })
         .catch(err=>{
             store.commit(Constant.ERROR, err);
@@ -398,9 +398,14 @@ export default {
     [Constant.INSERT_GOODS]: (store, payload) => {
         console.log(Constant.INSERT_GOODS);
         console.log(payload);
-        axios.post(APIConstant.INSERT_DATA_GOODS, payload.item)
-        .then(()=>{
-            store.dispatch(Constant.FETCH_GOODS_SEARCH, payload.item.itemName);
+        axios.post(APIConstant.INSERT_DATA_GOODS, payload.formData)
+        .then((res)=>{
+            console.log(res);
+            if(res.status === 200){
+                store.dispatch(Constant.FETCH_GOODS);
+            }else{
+                store.commit(Constant.ERROR, res);
+            }
         })
         .catch(err=>{
             store.commit(Constant.ERROR, err);
@@ -421,9 +426,15 @@ export default {
     // updateGoods
     [Constant.UPDATE_GOODS]: (store, payload) => {
         console.log(Constant.UPDATE_GOODS);
-        axios.post(APIConstant.UPDATE_DATA_GOODS.replace("${id}", payload.id), payload)
+        console.log(payload);
+        axios.post(APIConstant.UPDATE_DATA_GOODS.replace("${id}", payload.id), payload.item)
         .then(res=>{
-            store.commit(Constant.FETCH_GOODS_SEARCH, {id: payload.id});
+            console.log(res);
+            if(res.status === 200){
+                store.commit(Constant.CHANGE_PAGE, {component: "Goods"});
+            }else{
+                store.commit(Constant.ERROR, res);    
+            }
         })
         .catch(err=>{
             store.commit(Constant.ERROR, err);
@@ -436,8 +447,7 @@ export default {
         axios.delete(APIConstant.DELETE_DATA_GOODS.replace("${id}", payload.id), payload)
         .then(res=>{
             console.log(res);
-            store.commit(Constant.DELETE_GOODS, res.data);
-            store.commit(Constant.FETCH_GOODS);
+            store.commit(Constant.CHANGE_PAGE, {component: "Goods"})
         })
         .catch(err=>{
             store.commit(Constant.ERROR, err);
@@ -473,11 +483,13 @@ export default {
     // insertOrder
     [Constant.INSERT_ORDER]: (store, payload) => {
         console.log(Constant.INSERT_ORDER);
-        var formData = payload;
-        console.log(formData);
-        axios.post(APIConstant.INSERT_DATA_GOODS, formData)
+        console.log(payload);
+        axios.post(APIConstant.INSERT_DATA_ORDER, payload)
         .then(res=> {
-            console.log(res.data);
+            console.log(res);
+            if(res.status === 200){
+                store.commit(Constant.CHANGE_PAGE, {component: "Order"});
+            }
         })
         .catch(err=>{
             store.commit(Constant.ERROR, err);
@@ -486,11 +498,34 @@ export default {
     // updateOrder
     [Constant.UPDATE_ORDER]: (store, payload) => {
         console.log(Constant.UPDATE_ORDER);
-        store.commit(Constant.ERROR, "Not Implement");
+        console.log(payload);
+        axios.put(APIConstant.UPDATE_DATA_ORDER.replace("${id}", payload.id), payload)
+        .then(res=>{
+            if(res.status ===200){
+                store.commit(Constant.CHANGE_PAGE, {component: "Order"});
+            }else{
+                store.commit(Constant.ERROR, res);
+            }
+        })
+        .catch(err=>{
+            store.commit(Constant.ERROR, err);
+        })
     },
     // deleteOrder
     [Constant.DELETE_ORDER]: (store, payload) => {
-        store.commit(Constant.ERROR, "Not Implement");
+        // store.commit(Constant.ERROR, "Not Implement");
+        console.log(Constant.DELETE_ORDER);
+        axios.delete(APIConstant.DELETE_DATA_ORDER.replace("${id}", payload))
+        .then(res=>{
+            if(res.status === 200){
+                store.commit(Constant.CHANGE_PAGE, {component: "Order"});
+            }else{
+                store.commit(Constant.ERROR, res);
+            }
+        })
+        .catch(err=>{
+            store.commit(Constant.ERROR, err);
+        })
     },
     //Order end
 

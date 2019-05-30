@@ -17,14 +17,14 @@
                             결제수단
                         </th>
                         <td>
-                            <b-form-select v-model="item.payment" :options="payment"></b-form-select>
+                            <b-form-select v-model="item.payMethod" :options="payment"></b-form-select>
                             <!-- <b-form-input v-model="item.manager" placeholder="대표자 명"></b-form-input> -->
                         </td>
                         <th class="text-center align-middle" style="background: rgba(241,241,241);">
                             배송 요청일
                         </th>
                         <td>
-                            <b-form-input v-model="item.orderDate" type="date" placeholder="대표자 전화번호"></b-form-input>
+                            <b-form-input v-model="item.reqDate" type="date" placeholder="대표자 전화번호"></b-form-input>
                         </td>
                     </tr>
                     <tr>
@@ -186,17 +186,17 @@
                 postData.pmOrderItamVOs = this.orderList;
                 console.log(this.orderList);
                 postData.amount = this.total;
+                postData.payment = this.total;
                 postData.itemCount = this.qty;
                 this.$store.dispatch(Constant.INSERT_ORDER, postData);
-                this.$refs['modal-1'].hide();
             },
             cancel() {
-                this.$refs['modal-1'].hide()
-                Object.assign(this.item, this.$store.state.providerItem);
+                Object.assign(this.item, this.$store.state.order);
             },
             rowSelected(item) {
-                item[this.cnt].tbItem_ID = item[this.cnt].id;
+                item[this.cnt].tbitem_ID = item[this.cnt].id;
                 item[this.cnt].tbOrderItemQTY = 1;
+                item[this.cnt].state = "결재대기";
                 this.orderList.push(item[this.cnt]);
                 this.cnt++;
                 console.log(this.orderList);
