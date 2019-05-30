@@ -87,7 +87,7 @@
                                         <td class="w-25">
                                                 <b-button-group>
                                                 <b-button @click="decrement(item.id)">-</b-button>
-                                                <b-button>{{nwc(item.qty)}}</b-button>
+                                                <b-button>{{item.qty}}</b-button>
                                                 <b-button @click="increment(item.id)">+</b-button>
                                                 </b-button-group>
                                         </td>
@@ -248,7 +248,15 @@
                 
                 this.orderList.push(item[this.cnt]);
                 this.cnt++;
-            }
+            },
+	    increment(id) {
+		console.log("increment active");
+		this.$store.commit(Constant.UPDATE_ITEM_QTY, {id: id, val: "up"});
+	    },
+	    decrement(id){
+		console.log("decrement active");
+		this.$store.commit(Constant.UPDATE_ITEM_QTY, {id: id, val: "down"});
+	    }
         },
     }
 </script>

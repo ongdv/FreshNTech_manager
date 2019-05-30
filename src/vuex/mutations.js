@@ -248,6 +248,7 @@ export default {
         })
         state.orderList = payload;
     },
+    //getOrderDetail
     [Constant.FETCH_ORDER_DETAIL]: (state, payload) => {
         console.log(payload);
         state.order = payload;
@@ -274,12 +275,20 @@ export default {
         }
         state.layoutView = "OrderDetail";
     },
+    //updateOrderListItemQty
     [Constant.UPDATE_ITEM_QTY]: (state, payload) => {
         console.log(Constant.UPDATE_ITEM_QTY);
         console.log(payload);
         state.order.pmOrderItamVOs.forEach(item=>{
-            console.log(item);
-        })
+	    if(item.id === payload.id){
+		if(payload.val === "up"){
+			item.qty++
+		}else{
+			item.qty--
+		}
+		console.log(item.qty);
+	    }
+        });
     }
     //Order end
 }
