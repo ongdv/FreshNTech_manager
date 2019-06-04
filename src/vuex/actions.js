@@ -134,6 +134,7 @@ export default {
     //insertClient
     [Constant.INSERT_CLIENT]: (store, payload) => {
         console.log(Constant.INSERT_CLIENT);
+        console.log(payload);
         axios.post(APIConstant.INSERT_DATA_CLIENT, payload)
         .then(res=>{
             console.log(res.data);

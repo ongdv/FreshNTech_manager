@@ -14,14 +14,14 @@
                         </th>
                         <td>
                             <!-- <b-form-select v-model="item.tbCustomer_ID" :options="$store.state.clientName"></b-form-select> -->
-                            <b-form-input v-model="item.bName" placeholder="거래처명"></b-form-input>
+                            <b-form-input v-model="item.bname" placeholder="거래처명"></b-form-input>
                         </td>
                         <th class="text-center align-middle" style="background: rgba(241,241,241);">
                             사업자 등록번호
                         </th>
                         <td>
                             <!-- <b-form-select v-model="item.bName" :options="purchase"></b-form-select> -->
-                            <b-form-input v-model="item.bNumber" placeholder="상품명"></b-form-input>
+                            <b-form-input v-model="item.bnumber" placeholder="사업자 등록번호"></b-form-input>
                         </td>
                     </tr>
                     <tr>
@@ -32,10 +32,10 @@
                             <b-form-input v-model="item.chief" placeholder="대표자명"></b-form-input>
                         </td>
                         <th class="text-center align-middle" style="background: rgba(241,241,241);">
-                            대표자 전화번호
+                            대표자 전화번호(아이디)
                         </th>
                         <td>
-                            <b-form-input v-model="item.tel" placeholder="대표자 전화번호"></b-form-input>
+                            <b-form-input v-model="item.userID" placeholder="대표자 전화번호"></b-form-input>
                         </td>
                     </tr>
                     <tr>
@@ -67,17 +67,17 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="text-center align-middle" style="background: rgba(241,241,241);">
+                        <!-- <th class="text-center align-middle" style="background: rgba(241,241,241);">
                             아이디(대표자 연락처)
                         </th>
                         <td>
                             <b-form-input v-model="item.userID"  placeholder="아이디(자동생성)"></b-form-input>
-                        </td>
+                        </td> -->
                         <th class="text-center align-middle" style="background: rgba(241,241,241);">
                             패스워드
                         </th>
-                        <td>
-                            <b-form-input v-model="item.userPW" placeholder="패스워드"></b-form-input>
+                        <td colspan="3">
+                            <b-form-input type="password" v-model="item.userPW" placeholder="패스워드"></b-form-input>
                         </td>
                     </tr>
                     <tr>
@@ -131,6 +131,7 @@
         computed: {
             item(){
                 var data = Object.assign({}, this.$store.state.clientItem);
+                console.log(data);
                 return data;
             },
             delivererList(){
@@ -155,6 +156,7 @@
         },
         methods: {
             reqOrder(){
+                this.item.tel = this.item.userID;
                 console.log(this.item);
                 this.$store.dispatch(Constant.INSERT_CLIENT, this.item);
                 
